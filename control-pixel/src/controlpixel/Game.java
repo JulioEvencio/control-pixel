@@ -4,6 +4,9 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -13,37 +16,48 @@ import javax.swing.JOptionPane;
 import controlpixel.strings.StringError;
 import controlpixel.strings.StringGame;
 
-public class Game extends Canvas implements Runnable {
+public class Game extends Canvas implements Runnable, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 
 	private final JFrame frame;
 
-	private final static int WIDTH;
-	private final static int HEIGHT;
+	private final int WIDTH;
+	private final int HEIGHT;
+	private final double SCREEN_RATIO;
 
-	private static int RENDERER_X;
-	private static int RENDERER_Y;
-	private static int RENDERER_WIDTH;
-	private static int RENDERER_HEIGHT;
+	private int windowWidth;
+	private int windowHeight;
+
+	private boolean isFullscreen;
+	private boolean updateFullscreen;
+
+	private int rendererX;
+	private int rendererY;
+	private int rendererWidth;
+	private int rendererHeight;
 
 	private final BufferedImage renderer;
 
 	private int fps;
 	private boolean showFPS;
 
-	static {
-		WIDTH = 800;
-		HEIGHT = 451;
-
-		RENDERER_X = 0;
-		RENDERER_Y = 0;
-		RENDERER_WIDTH = WIDTH;
-		RENDERER_HEIGHT = HEIGHT;
-	}
-
 	public Game() {
-		this.setPreferredSize(new Dimension(Game.RENDERER_WIDTH, Game.RENDERER_HEIGHT));
+		this.addKeyListener(this);
+
+		this.WIDTH = 800;
+		this.HEIGHT = 451;
+		this.SCREEN_RATIO = (double) this.WIDTH / (double) this.HEIGHT;
+
+		this.windowWidth = this.WIDTH;
+		this.windowHeight = this.HEIGHT;
+
+		this.rendererX = 0;
+		this.rendererY = 0;
+		this.rendererWidth = WIDTH;
+		this.rendererHeight = HEIGHT;
+
+		this.setPreferredSize(new Dimension(this.WIDTH, this.HEIGHT));
 
 		this.frame = new JFrame();
 
@@ -55,13 +69,67 @@ public class Game extends Canvas implements Runnable {
 		this.frame.setLocationRelativeTo(null);
 		this.frame.setVisible(true);
 
-		this.renderer = new BufferedImage(Game.RENDERER_WIDTH, Game.RENDERER_HEIGHT, BufferedImage.TYPE_INT_RGB);
+		this.renderer = new BufferedImage(this.WIDTH, this.HEIGHT, BufferedImage.TYPE_INT_RGB);
+
+		this.isFullscreen = true;
+		this.updateFullscreen = true;
 
 		this.showFPS = true;
 	}
 
+	public boolean isFullscreen() {
+		return this.isFullscreen;
+	}
+
+	private void toggleFullscreen() {
+		if (this.updateFullscreen) {
+			this.frame.dispose();
+
+			if (this.isFullscreen) {
+				this.windowWidth = this.WIDTH;
+				this.windowHeight = this.HEIGHT;
+
+				frame.setUndecorated(false);
+			} else {
+				this.windowWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+				this.windowHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+
+				frame.setUndecorated(true);
+			}
+
+			this.setPreferredSize(new Dimension(this.windowWidth, this.windowHeight));
+			this.setScreenRatio();
+
+			frame.pack();
+			frame.setLocationRelativeTo(null);
+			frame.setVisible(true);
+
+			this.requestFocus();
+
+			this.isFullscreen = !this.isFullscreen;
+			this.updateFullscreen = false;
+		}
+	}
+
+	private void setScreenRatio() {
+		this.rendererWidth = (int) (this.windowHeight * this.SCREEN_RATIO);
+
+		if (this.rendererWidth > this.windowWidth) {
+			this.rendererWidth = this.windowWidth;
+			this.rendererHeight = (int) (this.windowWidth * this.SCREEN_RATIO);
+
+			this.rendererX = 0;
+			this.rendererY = (this.windowHeight - this.rendererHeight) / 2;
+		} else {
+			this.rendererHeight = this.windowHeight;
+
+			this.rendererX = (this.windowWidth - this.rendererWidth) / 2;
+			this.rendererY = 0;
+		}
+	}
+
 	private void tick() {
-		// Code
+		this.toggleFullscreen();
 	}
 
 	private void render() {
@@ -75,28 +143,28 @@ public class Game extends Canvas implements Runnable {
 		Graphics render = this.renderer.getGraphics();
 
 		render.setColor(Color.BLACK);
-		render.fillRect(0, 0, Game.RENDERER_WIDTH, Game.RENDERER_HEIGHT);
+		render.fillRect(0, 0, this.WIDTH, this.HEIGHT);
 
 		if (this.showFPS) {
 			render.setColor(Color.BLACK);
-			render.fillRect(Game.RENDERER_WIDTH - 120, 10, 110, 30);
+			render.fillRect(this.WIDTH - 120, 10, 110, 30);
 
 			render.setColor(Color.WHITE);
 			render.setFont(GameUtil.getFontDefault());
-			render.drawString(String.format("FPS: %d", this.fps), Game.RENDERER_WIDTH - 115, 32);
+			render.drawString(String.format("FPS: %d", this.fps), this.WIDTH - 115, 32);
 
 			render.setColor(Color.WHITE);
-			render.drawRect(Game.RENDERER_WIDTH - 120, 10, 110, 30);
+			render.drawRect(this.WIDTH - 120, 10, 110, 30);
 		}
 
 		render.dispose();
 
 		Graphics graphics = bs.getDrawGraphics();
 
-		graphics.setColor(new Color(50, 50, 100));
-		graphics.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+		graphics.setColor(Color.BLACK);
+		graphics.fillRect(0, 0, this.windowWidth, this.windowHeight);
 
-		graphics.drawImage(this.renderer, Game.RENDERER_X, Game.RENDERER_Y, Game.RENDERER_WIDTH, Game.RENDERER_HEIGHT, null);
+		graphics.drawImage(this.renderer, this.rendererX, this.rendererY, this.rendererWidth, this.rendererHeight, null);
 
 		bs.show();
 	}
@@ -135,6 +203,23 @@ public class Game extends Canvas implements Runnable {
 				frames = 0;
 			}
 		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// Code
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_F2) {
+			this.updateFullscreen = true;
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// Code
 	}
 
 	public static void exitGame() {
