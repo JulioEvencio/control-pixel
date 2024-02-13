@@ -7,16 +7,20 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import controlpixel.screen.Screen;
+import controlpixel.screen.SelectLanguage;
 import controlpixel.strings.StringError;
 import controlpixel.strings.StringGame;
 
-public class Game extends Canvas implements Runnable, KeyListener {
+public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -44,8 +48,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	private int fps;
 	private boolean showFPS;
 
+	private Screen selectLanguage;
+
 	public Game() {
 		this.addKeyListener(this);
+		this.addMouseListener(this);
 
 		this.VERSION = "0.1";
 
@@ -79,6 +86,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		this.updateFullscreen = true;
 
 		this.showFPS = true;
+
+		this.initializeScreen();
 	}
 
 	public String getVERSION() {
@@ -111,6 +120,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public boolean isFullscreen() {
 		return this.isFullscreen;
+	}
+
+	public void initializeScreen() {
+		this.selectLanguage = new SelectLanguage(this);
 	}
 
 	private void toggleFullscreen() {
@@ -162,6 +175,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	private void tick() {
 		this.toggleFullscreen();
+		this.selectLanguage.tick();
 	}
 
 	private void render() {
@@ -176,6 +190,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 		render.setColor(Color.BLACK);
 		render.fillRect(0, 0, this.WIDTH, this.HEIGHT);
+
+		this.selectLanguage.render(render);
 
 		if (this.showFPS) {
 			render.setColor(Color.BLACK);
@@ -252,6 +268,31 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// Code
+	}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// Code
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// Code
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// Code
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		this.selectLanguage.mousePressed(e);
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		this.selectLanguage.mouseReleased(e);
 	}
 
 	public static void exitGame() {

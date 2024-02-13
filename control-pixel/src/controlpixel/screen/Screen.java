@@ -15,7 +15,7 @@ import controlpixel.util.Spritesheet;
 
 public abstract class Screen {
 
-	private final Game game;
+	protected final Game game;
 
 	private static final BufferedImage background;
 
