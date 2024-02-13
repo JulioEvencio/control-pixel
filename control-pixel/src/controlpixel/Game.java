@@ -86,10 +86,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		this.renderer = new BufferedImage(this.WIDTH, this.HEIGHT, BufferedImage.TYPE_INT_RGB);
 
-		this.isFullscreen = true;
-		this.updateFullscreen = true;
+		this.isFullscreen = false;
+		this.updateFullscreen = false;
 
-		this.showFPS = true;
+		this.showFPS = false;
 
 		this.updateGameStatus(GameStatus.SELECT_LANGUAGE);
 		this.initializeScreen();
@@ -276,6 +276,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_F2) {
 			this.updateFullscreen = true;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_F3) {
+			this.showFPS = !this.showFPS;
 		}
 	}
 
