@@ -72,12 +72,12 @@ public class Button {
 	}
 
 	public boolean wasClicked(int x, int y) {
-		if (game.isFullscreen()) {
-			x -= game.getRendererX();
-			y -= game.getRendererY();
+		if (this.game.isFullscreen()) {
+			x -= this.game.getRendererX();
+			y -= this.game.getRendererY();
 
-			x *= (double) game.getGameWidth() / (double) game.getRendererWidth();
-			y *= (double) game.getGameHeight() / (double) game.getRendererHeight();
+			x *= (double) this.game.getGameWidth() / (double) this.game.getRendererWidth();
+			y *= (double) this.game.getGameHeight() / (double) this.game.getRendererHeight();
 		}
 
 		return x >= this.x && x <= this.x + Button.widthPressed && y >= this.y && y <= this.y + Button.heightPressed;
