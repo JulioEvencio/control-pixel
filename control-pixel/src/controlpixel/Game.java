@@ -20,6 +20,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 
+	private final String VERSION;
+
 	private final JFrame frame;
 
 	private final int WIDTH;
@@ -44,6 +46,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	public Game() {
 		this.addKeyListener(this);
+
+		this.VERSION = "0.1";
 
 		this.WIDTH = 800;
 		this.HEIGHT = 451;
@@ -75,6 +79,10 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		this.updateFullscreen = true;
 
 		this.showFPS = true;
+	}
+
+	public String getVERSION() {
+		return VERSION;
 	}
 
 	public int getGameWidth() {
