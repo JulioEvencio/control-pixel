@@ -1,0 +1,3 @@
+Error
+Error loading sprites
+Error loading audio
