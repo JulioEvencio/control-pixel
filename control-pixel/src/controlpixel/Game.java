@@ -77,6 +77,32 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		this.showFPS = true;
 	}
 
+	@Override
+	public int getWidth() {
+		return this.WIDTH;
+	}
+
+	@Override
+	public int getHeight() {
+		return this.HEIGHT;
+	}
+
+	public int getRendererX() {
+		return this.rendererX;
+	}
+
+	public int getRendererY() {
+		return this.rendererY;
+	}
+
+	public int getRendererWidth() {
+		return this.rendererWidth;
+	}
+
+	public int getRendererHeight() {
+		return this.rendererHeight;
+	}
+
 	public boolean isFullscreen() {
 		return this.isFullscreen;
 	}
