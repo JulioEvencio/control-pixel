@@ -77,13 +77,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		this.showFPS = true;
 	}
 
-	@Override
-	public int getWidth() {
+	public int getGameWidth() {
 		return this.WIDTH;
 	}
 
-	@Override
-	public int getHeight() {
+	public int getGameHeight() {
 		return this.HEIGHT;
 	}
 
