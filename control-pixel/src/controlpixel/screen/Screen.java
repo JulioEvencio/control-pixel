@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controlpixel.Game;
-import controlpixel.GameUtil;
 import controlpixel.gui.Button;
 import controlpixel.gui.Text;
 import controlpixel.util.Spritesheet;
+import controlpixel.util.Util;
 
 public abstract class Screen {
 
@@ -79,7 +79,7 @@ public abstract class Screen {
 		render.drawImage(Screen.background, 0, 0, this.game.getGameWidth(), this.game.getGameHeight(), null);
 
 		render.setColor(Color.WHITE);
-		render.setFont(GameUtil.getFontTitle());
+		render.setFont(Util.getFontTitle());
 
 		int titleWidth = render.getFontMetrics().stringWidth(this.title);
 

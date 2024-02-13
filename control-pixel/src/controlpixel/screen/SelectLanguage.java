@@ -4,6 +4,7 @@ import controlpixel.Game;
 import controlpixel.gui.Button;
 import controlpixel.strings.StringGame;
 import controlpixel.strings.StringScreen;
+import controlpixel.util.GameStatus;
 import controlpixel.util.Translation;
 import controlpixel.util.Translation.Language;
 
@@ -21,6 +22,7 @@ public class SelectLanguage extends Screen {
 		Translation.changeTheLanguage(language);
 
 		super.game.initializeScreen();
+		super.game.updateGameStatus(GameStatus.MAIN_MENU);
 	}
 
 }

@@ -5,9 +5,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import controlpixel.Game;
-import controlpixel.GameUtil;
 import controlpixel.gui.event.EventOnClick;
 import controlpixel.util.Spritesheet;
+import controlpixel.util.Util;
 
 public class Button {
 
@@ -99,7 +99,7 @@ public class Button {
 		}
 
 		render.setColor(Color.WHITE);
-		render.setFont(GameUtil.getFontDefault());
+		render.setFont(Util.getFontDefault());
 
 		int textWidth = render.getFontMetrics().stringWidth(this.text);
 		int textHeight = render.getFontMetrics().getHeight();

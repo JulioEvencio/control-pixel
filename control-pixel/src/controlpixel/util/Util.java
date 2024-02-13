@@ -1,8 +1,8 @@
-package controlpixel;
+package controlpixel.util;
 
 import java.awt.Font;
 
-public class GameUtil {
+public class Util {
 
 	public static Font getFontTitle() {
 		return new Font("Arial", Font.BOLD, 36);

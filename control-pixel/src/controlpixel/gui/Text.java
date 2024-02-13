@@ -3,7 +3,7 @@ package controlpixel.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import controlpixel.GameUtil;
+import controlpixel.util.Util;
 
 public class Text {
 
@@ -37,7 +37,7 @@ public class Text {
 
 	public void render(Graphics render) {
 		render.setColor(this.color);
-		render.setFont(GameUtil.getFontDefault());
+		render.setFont(Util.getFontDefault());
 		render.drawString(this.text, this.x, this.y);
 	}
 

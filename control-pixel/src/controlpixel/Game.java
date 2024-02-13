@@ -19,6 +19,8 @@ import controlpixel.screen.Screen;
 import controlpixel.screen.SelectLanguage;
 import controlpixel.strings.StringError;
 import controlpixel.strings.StringGame;
+import controlpixel.util.GameStatus;
+import controlpixel.util.Util;
 
 public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
 
@@ -47,6 +49,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	private int fps;
 	private boolean showFPS;
+
+	private GameStatus gameStatus;
 
 	private Screen selectLanguage;
 
@@ -87,6 +91,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		this.showFPS = true;
 
+		this.updateGameStatus(GameStatus.SELECT_LANGUAGE);
 		this.initializeScreen();
 	}
 
@@ -120,6 +125,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public boolean isFullscreen() {
 		return this.isFullscreen;
+	}
+
+	public void updateGameStatus(GameStatus gameStatus) {
+		this.gameStatus = gameStatus;
 	}
 
 	public void initializeScreen() {
@@ -175,7 +184,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	private void tick() {
 		this.toggleFullscreen();
-		this.selectLanguage.tick();
+
+		if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
+			this.selectLanguage.tick();
+		}
 	}
 
 	private void render() {
@@ -191,14 +203,16 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		render.setColor(Color.BLACK);
 		render.fillRect(0, 0, this.WIDTH, this.HEIGHT);
 
-		this.selectLanguage.render(render);
+		if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
+			this.selectLanguage.render(render);
+		}
 
 		if (this.showFPS) {
 			render.setColor(Color.BLACK);
 			render.fillRect(this.WIDTH - 120, 10, 110, 30);
 
 			render.setColor(Color.WHITE);
-			render.setFont(GameUtil.getFontDefault());
+			render.setFont(Util.getFontDefault());
 			render.drawString(String.format("FPS: %d", this.fps), this.WIDTH - 115, 32);
 
 			render.setColor(Color.WHITE);

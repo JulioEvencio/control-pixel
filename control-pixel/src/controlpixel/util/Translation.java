@@ -36,6 +36,10 @@ public class Translation {
 			Translation.toTranslation("screen", new GameString[] {
 				// Code
 			});
+
+			Translation.toTranslation("level", new GameString[] {
+				// Code
+			});
 		} catch (Exception e) {
 			Game.exitWithError("Error loading files");
 		}
