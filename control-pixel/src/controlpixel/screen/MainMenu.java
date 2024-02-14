@@ -21,4 +21,9 @@ public class MainMenu extends Screen {
 		super.texts.add(new Text(StringScreen.TEXT_FULL_SCREEN.getValue(), (super.game.getGameWidth() - 333) / 2, 420, Color.WHITE));
 	}
 
+	@Override
+	public GameStatus getGameStatus() {
+		return GameStatus.MAIN_MENU;
+	}
+
 }

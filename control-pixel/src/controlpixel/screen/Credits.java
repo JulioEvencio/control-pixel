@@ -22,4 +22,9 @@ public class Credits extends Screen {
 		super.buttons.add(new Button(super.game, StringScreen.BACK.getValue(), 50, game.getGameHeight() - Button.getHeightpressed() - 50, () -> game.updateGameStatus(GameStatus.MAIN_MENU)));
 	}
 
+	@Override
+	public GameStatus getGameStatus() {
+		return GameStatus.CREDITS;
+	}
+
 }

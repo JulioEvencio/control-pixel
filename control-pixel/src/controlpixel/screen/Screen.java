@@ -10,6 +10,7 @@ import java.util.List;
 import controlpixel.Game;
 import controlpixel.gui.Button;
 import controlpixel.gui.Text;
+import controlpixel.util.GameStatus;
 import controlpixel.util.Spritesheet;
 import controlpixel.util.Util;
 
@@ -51,25 +52,27 @@ public abstract class Screen {
 		this.texts.add(new Text(String.format("Version: %s", this.game.getVERSION()), 50, 50, Color.WHITE));
 	}
 
+	public abstract GameStatus getGameStatus();
+
 	public void tick() {
 		if (this.mousePressed) {
-			this.buttons.forEach(button -> {
+			for (Button button : this.buttons) {
 				if (button.wasClicked(this.mouseX, this.mouseY)) {
 					button.setButtonPressed();
 				}
-			});
+			}
 
 			this.mousePressed = false;
 		}
 
 		if (this.mouseReleased) {
-			this.buttons.forEach(button -> {
+			for (Button button : this.buttons) {
 				if (button.wasClicked(this.mouseX, this.mouseY)) {
 					button.onClick();
 				}
 
 				button.setButtonReleased();
-			});
+			}
 
 			this.mouseReleased = false;
 		}
@@ -85,8 +88,13 @@ public abstract class Screen {
 
 		render.drawString(this.title, (game.getGameWidth() - titleWidth) / 2, 80);
 
-		this.texts.forEach(text -> text.render(render));
-		this.buttons.forEach(button -> button.render(render));
+		for (Text text : this.texts) {
+			text.render(render);
+		}
+
+		for (Button button : this.buttons) {
+			button.render(render);
+		}
 	}
 
 	public void mousePressed(MouseEvent e) {

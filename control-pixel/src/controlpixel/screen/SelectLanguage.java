@@ -30,4 +30,9 @@ public class SelectLanguage extends Screen {
 		super.game.updateGameStatus(GameStatus.MAIN_MENU);
 	}
 
+	@Override
+	public GameStatus getGameStatus() {
+		return GameStatus.SELECT_LANGUAGE;
+	}
+
 }

@@ -11,6 +11,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -54,9 +56,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	private GameStatus gameStatus;
 
-	private Screen selectLanguage;
-	private Screen mainMenu;
-	private Screen credits;
+	private final List<Screen> screens;
 
 	public Game() {
 		this.addKeyListener(this);
@@ -94,6 +94,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		this.updateFullscreen = false;
 
 		this.showFPS = false;
+
+		this.screens = new ArrayList<>();
 
 		this.updateGameStatus(GameStatus.SELECT_LANGUAGE);
 		this.initializeScreen();
@@ -136,9 +138,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	}
 
 	public void initializeScreen() {
-		this.selectLanguage = new SelectLanguage(this);
-		this.mainMenu = new MainMenu(this);
-		this.credits = new Credits(this);
+		this.screens.clear();
+
+		this.screens.add(new MainMenu(this));
+		this.screens.add(new Credits(this));
+		this.screens.add(new SelectLanguage(this));
 	}
 
 	private void toggleFullscreen() {
@@ -191,14 +195,15 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private void tick() {
 		this.toggleFullscreen();
 
-		if (this.gameStatus == GameStatus.MAIN_MENU) {
-			this.mainMenu.tick();
-		} else if (this.gameStatus == GameStatus.CREDITS) {
-			this.credits.tick();
-		} else if (this.gameStatus == GameStatus.EXIT) {
+		for (Screen screen : this.screens) {
+			if (screen.getGameStatus() == this.gameStatus) {
+				screen.tick();
+				break;
+			}
+		}
+
+		if (this.gameStatus == GameStatus.EXIT) {
 			Game.exitGame();
-		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
-			this.selectLanguage.tick();
 		}
 	}
 
@@ -215,12 +220,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		render.setColor(Color.BLACK);
 		render.fillRect(0, 0, this.WIDTH, this.HEIGHT);
 
-		if (this.gameStatus == GameStatus.MAIN_MENU) {
-			this.mainMenu.render(render);
-		} else if (this.gameStatus == GameStatus.CREDITS) {
-			this.credits.render(render);
-		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
-			this.selectLanguage.render(render);
+		for (Screen screen : this.screens) {
+			if (screen.getGameStatus() == this.gameStatus) {
+				screen.render(render);
+				break;
+			}
 		}
 
 		if (this.showFPS) {
@@ -321,23 +325,21 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if (this.gameStatus == GameStatus.MAIN_MENU) {
-			this.mainMenu.mousePressed(e);
-		} else if (this.gameStatus == GameStatus.CREDITS) {
-			this.credits.mousePressed(e);
-		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
-			this.selectLanguage.mousePressed(e);
+		for (Screen screen : this.screens) {
+			if (screen.getGameStatus() == this.gameStatus) {
+				screen.mousePressed(e);
+				break;
+			}
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (this.gameStatus == GameStatus.MAIN_MENU) {
-			this.mainMenu.mouseReleased(e);
-		} else if (this.gameStatus == GameStatus.CREDITS) {
-			this.credits.mouseReleased(e);
-		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
-			this.selectLanguage.mouseReleased(e);
+		for (Screen screen : this.screens) {
+			if (screen.getGameStatus() == this.gameStatus) {
+				screen.mouseReleased(e);
+				break;
+			}
 		}
 	}
 
