@@ -8,6 +8,7 @@ import controlpixel.gui.Text;
 import controlpixel.strings.StringGame;
 import controlpixel.strings.StringScreen;
 import controlpixel.util.GameStatus;
+import controlpixel.util.Util;
 
 public class MainMenu extends Screen {
 
@@ -18,7 +19,7 @@ public class MainMenu extends Screen {
 		super.buttons.add(new Button(super.game, StringScreen.CREDITS.getValue(), (super.game.getGameWidth() - Button.getWidthPressed()) / 2, 220, () -> game.updateGameStatus(GameStatus.CREDITS)));
 		super.buttons.add(new Button(super.game, StringScreen.EXIT.getValue(), (super.game.getGameWidth() - Button.getWidthPressed()) / 2, 320, () -> game.updateGameStatus(GameStatus.EXIT)));
 
-		super.texts.add(new Text(StringScreen.TEXT_FULL_SCREEN.getValue(), (super.game.getGameWidth() - 333) / 2, 420, Color.WHITE));
+		super.texts.add(new Text(StringScreen.TEXT_FULL_SCREEN.getValue(), (super.game.getGameWidth() - Util.getWidthTextFullScreen()) / 2, 420, Color.WHITE));
 	}
 
 	@Override

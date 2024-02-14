@@ -18,6 +18,10 @@ public class Translation {
 		ENGLISH, PORTUGUESE, SPANISH;
 	}
 
+	public static String getLanguage() {
+		return Translation.language;
+	}
+
 	public static void changeTheLanguage(Language language) {
 		if (language == Translation.Language.PORTUGUESE) {
 			Translation.language = "portuguese";

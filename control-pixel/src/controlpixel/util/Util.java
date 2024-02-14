@@ -12,4 +12,14 @@ public class Util {
 		return new Font("Arial", Font.BOLD, 16);
 	}
 
+	public static int getWidthTextFullScreen() {
+		if (Translation.getLanguage().equals("portuguese")) {
+			return 395;
+		} else if (Translation.getLanguage().equals("spanish")) {
+			return 515;
+		} else {
+			return 333;
+		}
+	}
+
 }
