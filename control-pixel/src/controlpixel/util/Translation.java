@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import controlpixel.Game;
 import controlpixel.strings.GameString;
 import controlpixel.strings.StringError;
+import controlpixel.strings.StringScreen;
 
 public class Translation {
 
@@ -34,7 +35,10 @@ public class Translation {
 			});
 
 			Translation.toTranslation("screen", new GameString[] {
-				// Code
+				StringScreen.NEW_GAME,
+				StringScreen.CREDITS,
+				StringScreen.EXIT,
+				StringScreen.TEXT_FULL_SCREEN
 			});
 
 			Translation.toTranslation("level", new GameString[] {

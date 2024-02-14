@@ -1,0 +1,4 @@
+New Game
+Credits
+Exit
+Press F2 to enable/disable full screen
