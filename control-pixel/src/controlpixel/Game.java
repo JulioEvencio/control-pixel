@@ -192,6 +192,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			this.mainMenu.tick();
 		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
 			this.selectLanguage.tick();
+		} else if (this.gameStatus == GameStatus.EXIT) {
+			Game.exitGame();
 		}
 	}
 
