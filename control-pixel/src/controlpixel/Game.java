@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import controlpixel.screen.MainMenu;
 import controlpixel.screen.Screen;
 import controlpixel.screen.SelectLanguage;
 import controlpixel.strings.StringError;
@@ -53,6 +54,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private GameStatus gameStatus;
 
 	private Screen selectLanguage;
+	private Screen mainMenu;
 
 	public Game() {
 		this.addKeyListener(this);
@@ -133,6 +135,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public void initializeScreen() {
 		this.selectLanguage = new SelectLanguage(this);
+		this.mainMenu = new MainMenu(this);
 	}
 
 	private void toggleFullscreen() {
@@ -185,7 +188,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private void tick() {
 		this.toggleFullscreen();
 
-		if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
+		if (this.gameStatus == GameStatus.MAIN_MENU) {
+			this.mainMenu.tick();
+		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
 			this.selectLanguage.tick();
 		}
 	}
@@ -203,7 +208,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		render.setColor(Color.BLACK);
 		render.fillRect(0, 0, this.WIDTH, this.HEIGHT);
 
-		if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
+		if (this.gameStatus == GameStatus.MAIN_MENU) {
+			this.mainMenu.render(render);
+		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
 			this.selectLanguage.render(render);
 		}
 
@@ -305,12 +312,20 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		this.selectLanguage.mousePressed(e);
+		if (this.gameStatus == GameStatus.MAIN_MENU) {
+			this.mainMenu.mousePressed(e);
+		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
+			this.selectLanguage.mousePressed(e);
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		this.selectLanguage.mouseReleased(e);
+		if (this.gameStatus == GameStatus.MAIN_MENU) {
+			this.mainMenu.mouseReleased(e);
+		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
+			this.selectLanguage.mouseReleased(e);
+		}
 	}
 
 	public static void exitGame() {
