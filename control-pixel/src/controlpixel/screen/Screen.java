@@ -83,7 +83,7 @@ public abstract class Screen {
 
 		int titleWidth = render.getFontMetrics().stringWidth(this.title);
 
-		render.drawString(this.title, (game.getGameWidth() - titleWidth) / 2, 100);
+		render.drawString(this.title, (game.getGameWidth() - titleWidth) / 2, 80);
 
 		this.texts.forEach(text -> text.render(render));
 		this.buttons.forEach(button -> button.render(render));
