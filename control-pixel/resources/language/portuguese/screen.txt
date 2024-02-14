@@ -2,3 +2,8 @@ Novo Jogo
 Créditos
 Sair
 Pressione F2 para ativar/desativar tela cheia
+Programador: Júlio Igreja
+Github: https://github.com/JulioEvencio
+Sprites: Mounir Tohami
+itch.io: https://mounirtohami.itch.io/
+Voltar

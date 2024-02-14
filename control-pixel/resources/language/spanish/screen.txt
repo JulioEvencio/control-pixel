@@ -2,3 +2,8 @@ Nuevo Juego
 Créditos
 Salir
 Presione F2 para habilitar/deshabilitar la pantalla completa
+Programador: Júlio Igreja
+Github: https://github.com/JulioEvencio
+Sprites: Mounir Tohami
+itch.io: https://mounirtohami.itch.io/
+Volver
