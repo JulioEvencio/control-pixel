@@ -12,4 +12,12 @@ public class StringScreen {
 
 	public static final GameString TEXT_FULL_SCREEN = new GameString("Press F2 to enable/disable full screen");
 
+	public static final GameString PROGRAMMER = new GameString("Programmer: Júlio Igreja");
+	public static final GameString PROGRAMMER_LINK = new GameString("Github: https://github.com/JulioEvencio");
+
+	public static final GameString SPRITES_CREDITS = new GameString("Sprites: Mounir Tohami");
+	public static final GameString SPRITES_CREDITS_LINK = new GameString("itch.io: https://mounirtohami.itch.io/");
+
+	public static final GameString BACK = new GameString("Back");
+
 }

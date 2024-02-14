@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import controlpixel.screen.Credits;
 import controlpixel.screen.MainMenu;
 import controlpixel.screen.Screen;
 import controlpixel.screen.SelectLanguage;
@@ -55,6 +56,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	private Screen selectLanguage;
 	private Screen mainMenu;
+	private Screen credits;
 
 	public Game() {
 		this.addKeyListener(this);
@@ -136,6 +138,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public void initializeScreen() {
 		this.selectLanguage = new SelectLanguage(this);
 		this.mainMenu = new MainMenu(this);
+		this.credits = new Credits(this);
 	}
 
 	private void toggleFullscreen() {
@@ -190,10 +193,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		if (this.gameStatus == GameStatus.MAIN_MENU) {
 			this.mainMenu.tick();
-		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
-			this.selectLanguage.tick();
+		} else if (this.gameStatus == GameStatus.CREDITS) {
+			this.credits.tick();
 		} else if (this.gameStatus == GameStatus.EXIT) {
 			Game.exitGame();
+		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
+			this.selectLanguage.tick();
 		}
 	}
 
@@ -212,6 +217,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		if (this.gameStatus == GameStatus.MAIN_MENU) {
 			this.mainMenu.render(render);
+		} else if (this.gameStatus == GameStatus.CREDITS) {
+			this.credits.render(render);
 		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
 			this.selectLanguage.render(render);
 		}
@@ -316,6 +323,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public void mousePressed(MouseEvent e) {
 		if (this.gameStatus == GameStatus.MAIN_MENU) {
 			this.mainMenu.mousePressed(e);
+		} else if (this.gameStatus == GameStatus.CREDITS) {
+			this.credits.mousePressed(e);
 		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
 			this.selectLanguage.mousePressed(e);
 		}
@@ -325,6 +334,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public void mouseReleased(MouseEvent e) {
 		if (this.gameStatus == GameStatus.MAIN_MENU) {
 			this.mainMenu.mouseReleased(e);
+		} else if (this.gameStatus == GameStatus.CREDITS) {
+			this.credits.mouseReleased(e);
 		} else if (this.gameStatus == GameStatus.SELECT_LANGUAGE) {
 			this.selectLanguage.mouseReleased(e);
 		}
