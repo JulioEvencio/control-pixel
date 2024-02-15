@@ -14,7 +14,7 @@ import controlpixel.util.Rect;
 
 public abstract class Scenario {
 
-	protected final Game game;
+	private final Game game;
 
 	protected char[][] map;
 

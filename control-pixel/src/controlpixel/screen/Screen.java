@@ -16,7 +16,7 @@ import controlpixel.util.Util;
 
 public abstract class Screen {
 
-	protected final Game game;
+	private final Game game;
 
 	private static final BufferedImage background;
 

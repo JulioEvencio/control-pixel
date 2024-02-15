@@ -19,7 +19,7 @@ public class Credits extends Screen {
 		super.texts.add(new Text(StringScreen.SPRITES_CREDITS.getValue(), 50, 230, Color.WHITE));
 		super.texts.add(new Text(StringScreen.SPRITES_CREDITS_LINK.getValue(), 50, 260, Color.WHITE));
 
-		super.buttons.add(new Button(super.game, StringScreen.BACK.getValue(), 50, game.getGameHeight() - Button.getHeightpressed() - 50, () -> game.updateGameStatus(GameStatus.MAIN_MENU)));
+		super.buttons.add(new Button(game, StringScreen.BACK.getValue(), 50, game.getGameHeight() - Button.getHeightpressed() - 50, () -> game.updateGameStatus(GameStatus.MAIN_MENU)));
 	}
 
 	@Override
