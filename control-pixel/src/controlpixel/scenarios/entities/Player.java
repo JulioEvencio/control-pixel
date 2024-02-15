@@ -1,4 +1,4 @@
-package controlpixel.entities;
+package controlpixel.scenarios.entities;
 
 import java.awt.Color;
 

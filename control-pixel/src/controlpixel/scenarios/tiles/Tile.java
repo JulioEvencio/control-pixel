@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import controlpixel.util.Camera;
 import controlpixel.util.Rect;
 
-public class Tile {
+public abstract class Tile {
 
 	private final Rect rect;
 	private final Color color;
