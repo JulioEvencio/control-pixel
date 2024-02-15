@@ -17,6 +17,8 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import controlpixel.scenarios.Scenario;
+import controlpixel.scenarios.levels.Level01;
 import controlpixel.screen.Credits;
 import controlpixel.screen.Exit;
 import controlpixel.screen.MainMenu;
@@ -59,6 +61,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private GameStatus lastGameStatus;
 
 	private final List<Screen> screens;
+	private Scenario scenario;
 
 	public Game() {
 		this.addKeyListener(this);
@@ -67,7 +70,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		this.VERSION = "0.1";
 
 		this.WIDTH = 800;
-		this.HEIGHT = 451;
+		this.HEIGHT = 450;
 		this.SCREEN_RATIO = (double) this.WIDTH / (double) this.HEIGHT;
 
 		this.windowWidth = this.WIDTH;
@@ -153,6 +156,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		this.screens.add(new Exit(this));
 	}
 
+	public void initializeScenario() {
+		this.scenario = new Level01(this);
+	}
+
 	private void toggleFullscreen() {
 		if (this.updateFullscreen) {
 			this.frame.dispose();
@@ -203,10 +210,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private void tick() {
 		this.toggleFullscreen();
 
-		for (Screen screen : this.screens) {
-			if (screen.getGameStatus() == this.gameStatus) {
-				screen.tick();
-				break;
+		if (this.gameStatus == GameStatus.RUN) {
+			this.scenario.tick();
+		} else {
+			for (Screen screen : this.screens) {
+				if (screen.getGameStatus() == this.gameStatus) {
+					screen.tick();
+					break;
+				}
 			}
 		}
 	}
@@ -224,10 +235,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		render.setColor(Color.BLACK);
 		render.fillRect(0, 0, this.WIDTH, this.HEIGHT);
 
-		for (Screen screen : this.screens) {
-			if (screen.getGameStatus() == this.gameStatus) {
-				screen.render(render);
-				break;
+		if (this.gameStatus == GameStatus.RUN) {
+			this.scenario.render(render);
+		} else {
+			for (Screen screen : this.screens) {
+				if (screen.getGameStatus() == this.gameStatus) {
+					screen.render(render);
+					break;
+				}
 			}
 		}
 
@@ -293,11 +308,17 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// Code
+		if (this.gameStatus == GameStatus.RUN) {
+			this.scenario.keyPressed(e);
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		if (this.gameStatus == GameStatus.RUN) {
+			this.scenario.keyReleased(e);
+		}
+
 		if (e.getKeyCode() == KeyEvent.VK_F2) {
 			this.updateFullscreen = true;
 		}

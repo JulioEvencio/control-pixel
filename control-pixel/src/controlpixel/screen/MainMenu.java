@@ -15,9 +15,12 @@ public class MainMenu extends Screen {
 	public MainMenu(Game game) {
 		super(game, StringGame.TITLE.getValue());
 
-		super.buttons.add(new Button(super.game, StringScreen.NEW_GAME.getValue(), (super.game.getGameWidth() - Button.getWidthPressed()) / 2, 120, () -> game.updateGameStatus(GameStatus.RUN)));
-		super.buttons.add(new Button(super.game, StringScreen.CREDITS.getValue(), (super.game.getGameWidth() - Button.getWidthPressed()) / 2, 220, () -> game.updateGameStatus(GameStatus.CREDITS)));
-		super.buttons.add(new Button(super.game, StringScreen.EXIT.getValue(), (super.game.getGameWidth() - Button.getWidthPressed()) / 2, 320, () -> game.updateGameStatus(GameStatus.EXIT)));
+		super.buttons.add(new Button(super.game, StringScreen.NEW_GAME.getValue(), (super.game.getGameWidth() - Button.getWidthPressed()) / 2, 120, () -> {
+			super.game.initializeScenario();
+			super.game.updateGameStatus(GameStatus.RUN);
+		}));
+		super.buttons.add(new Button(super.game, StringScreen.CREDITS.getValue(), (super.game.getGameWidth() - Button.getWidthPressed()) / 2, 220, () -> super.game.updateGameStatus(GameStatus.CREDITS)));
+		super.buttons.add(new Button(super.game, StringScreen.EXIT.getValue(), (super.game.getGameWidth() - Button.getWidthPressed()) / 2, 320, () -> super.game.updateGameStatus(GameStatus.EXIT)));
 
 		super.texts.add(new Text(StringScreen.TEXT_FULL_SCREEN.getValue(), (super.game.getGameWidth() - Util.getWidthTextFullScreen()) / 2, 420, Color.WHITE));
 	}
