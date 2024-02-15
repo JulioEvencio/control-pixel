@@ -22,4 +22,14 @@ public class Util {
 		}
 	}
 
+	public static int getWidthExitGame() {
+		if (Translation.getLanguage().equals("portuguese")) {
+			return 209;
+		} else if (Translation.getLanguage().equals("spanish")) {
+			return 261;
+		} else {
+			return 288;
+		}
+	}
+
 }

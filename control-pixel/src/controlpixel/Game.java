@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import controlpixel.screen.Credits;
+import controlpixel.screen.Exit;
 import controlpixel.screen.MainMenu;
 import controlpixel.screen.Screen;
 import controlpixel.screen.SelectLanguage;
@@ -55,6 +56,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private boolean showFPS;
 
 	private GameStatus gameStatus;
+	private GameStatus lastGameStatus;
 
 	private final List<Screen> screens;
 
@@ -133,7 +135,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		return this.isFullscreen;
 	}
 
+	public GameStatus getLastGameStatus() {
+		return this.lastGameStatus;
+	}
+
 	public void updateGameStatus(GameStatus gameStatus) {
+		this.lastGameStatus = this.gameStatus;
 		this.gameStatus = gameStatus;
 	}
 
@@ -143,6 +150,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		this.screens.add(new MainMenu(this));
 		this.screens.add(new Credits(this));
 		this.screens.add(new SelectLanguage(this));
+		this.screens.add(new Exit(this));
 	}
 
 	private void toggleFullscreen() {
@@ -200,10 +208,6 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 				screen.tick();
 				break;
 			}
-		}
-
-		if (this.gameStatus == GameStatus.EXIT) {
-			Game.exitGame();
 		}
 	}
 

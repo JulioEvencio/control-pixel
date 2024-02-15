@@ -47,7 +47,10 @@ public class Translation {
 				StringScreen.PROGRAMMER_LINK,
 				StringScreen.SPRITES_CREDITS,
 				StringScreen.SPRITES_CREDITS_LINK,
-				StringScreen.BACK
+				StringScreen.BACK,
+				StringScreen.EXIT_GAME,
+				StringScreen.YES,
+				StringScreen.NO
 			});
 
 			Translation.toTranslation("level", new GameString[] {

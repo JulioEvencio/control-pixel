@@ -7,3 +7,6 @@ Github: https://github.com/JulioEvencio
 Sprites: Mounir Tohami
 itch.io: https://mounirtohami.itch.io/
 Back
+Do you want to leave the game?
+Yes
+No
