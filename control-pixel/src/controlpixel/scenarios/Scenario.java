@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controlpixel.Game;
+import controlpixel.scenarios.entities.Player;
 import controlpixel.scenarios.tiles.Block;
 import controlpixel.scenarios.tiles.Tile;
 import controlpixel.util.Camera;
@@ -20,10 +21,14 @@ public abstract class Scenario {
 
 	protected final List<Tile> tiles;
 
+	protected final Player player;
+
 	public Scenario(Game game) {
 		this.game = game;
 
 		this.tiles = new ArrayList<>();
+
+		this.player = new Player(this);
 
 		this.buildGame();
 	}
@@ -38,6 +43,9 @@ public abstract class Scenario {
 				switch (map[i][j]) {
 					case 'B':
 						this.tiles.add(new Block(50 * j, 50 * i));
+						break;
+					case 'J':
+						this.player.setPosition(50 * j, 50 * i);
 						break;
 				}
 			}
@@ -61,7 +69,7 @@ public abstract class Scenario {
 	}
 
 	public void tick() {
-		// Code
+		this.player.tick();
 	}
 
 	public void render(Graphics render) {
@@ -73,6 +81,8 @@ public abstract class Scenario {
 				tile.render(render);
 			}
 		}
+
+		this.player.render(render);
 	}
 
 	public void keyPressed(KeyEvent e) {
