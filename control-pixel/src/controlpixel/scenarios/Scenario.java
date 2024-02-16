@@ -1,6 +1,5 @@
 package controlpixel.scenarios;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import controlpixel.Game;
 import controlpixel.scenarios.tiles.Block;
 import controlpixel.scenarios.tiles.Tile;
 import controlpixel.util.Camera;
+import controlpixel.util.CustomColors;
 import controlpixel.util.Rect;
 
 public abstract class Scenario {
@@ -65,7 +65,7 @@ public abstract class Scenario {
 	}
 
 	public void render(Graphics render) {
-		render.setColor(new Color(9, 103, 210));
+		render.setColor(CustomColors.PURPLE_DARK);
 		render.fillRect(0, 0, this.game.getGameWidth(), this.game.getGameHeight());
 
 		for (Tile tile : this.tiles) {
