@@ -21,7 +21,9 @@ public abstract class Scenario {
 
 	protected final List<Tile> tiles;
 
-	protected final Player player;
+	private final Player player;
+
+	private final double gravity;
 
 	public Scenario(Game game) {
 		this.game = game;
@@ -30,7 +32,13 @@ public abstract class Scenario {
 
 		this.player = new Player(this);
 
+		this.gravity = 0.5;
+
 		this.buildGame();
+	}
+
+	public double getGravity() {
+		return this.gravity;
 	}
 
 	protected abstract void initializeLevel();

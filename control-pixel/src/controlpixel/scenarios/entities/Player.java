@@ -43,6 +43,23 @@ public class Player {
 		this.direction *= -1;
 	}
 
+	public void applyGravity() {
+		this.speedY += this.scenario.getGravity();
+
+		if (this.speedY > 8) {
+			this.speedY = 8;
+		}
+
+		for (int i = 0; i < this.speedY; i++) {
+			if (this.scenario.isFree(new Rect(this.rect.getX(), this.rect.getY() + 1, this.rect.getWidth(), this.rect.getHeight()))) {
+				this.rect.setY(this.rect.getY() + 1);
+			} else {
+				this.speedY = 0;
+				break;
+			}
+		}
+	}
+
 	private void move() {
 		for (int i = 0; i < this.speedX; i++) {
 			if (this.scenario.isFree(new Rect(this.rect.getX() + this.direction, this.rect.getY(), this.rect.getWidth(), this.rect.getHeight()))) {
@@ -52,6 +69,7 @@ public class Player {
 	}
 
 	public void tick() {
+		this.applyGravity();
 		this.move();
 	}
 
