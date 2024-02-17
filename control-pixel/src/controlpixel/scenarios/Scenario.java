@@ -83,7 +83,6 @@ public abstract class Scenario {
 						break;
 					case 'J':
 						this.player.setPosition(50 * j, 50 * i);
-						this.entities.add(new Entity(50 * j, 50 * i, CustomColors.INVISIBLE));
 						break;
 				}
 			}
@@ -106,14 +105,29 @@ public abstract class Scenario {
 		return areaCamera.isColliding(object);
 	}
 
-	public void tick() {
-		this.player.tick();
-		
+	private void addBlock() {
 		if (this.hasClick) {
-			System.out.println("Click");
+			List<Entity> removeEntities = new ArrayList<>();
+
+			for (Entity entity : this.entities) {
+				if (entity.getRect().wasClicked(this.mouseClickX, this.mouseClickY)) {
+					removeEntities.add(entity);
+
+					this.tiles.add(new Block(entity.getRect().getX(), entity.getRect().getY()));
+					break;
+				}
+			}
+
+			this.entities.removeAll(removeEntities);
 
 			this.hasClick = false;
 		}
+	}
+
+	public void tick() {
+		this.player.tick();
+
+		this.addBlock();
 	}
 
 	public void render(Graphics render) {
@@ -164,6 +178,14 @@ public abstract class Scenario {
 
 		this.mouseClickX = e.getX();
 		this.mouseClickY = e.getY();
+
+		if (this.game.isFullscreen()) {
+			this.mouseClickX -= this.game.getRendererX();
+			this.mouseClickY -= this.game.getRendererY();
+
+			this.mouseClickX *= (double) this.game.getGameWidth() / (double) this.game.getRendererWidth();
+			this.mouseClickY *= (double) this.game.getGameHeight() / (double) this.game.getRendererHeight();
+		}
 	}
 
 	public void mouseMoved(MouseEvent e) {
