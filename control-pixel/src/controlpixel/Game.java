@@ -19,7 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import controlpixel.scenarios.Scenario;
-import controlpixel.scenarios.levels.Level01;
 import controlpixel.screen.Credits;
 import controlpixel.screen.Exit;
 import controlpixel.screen.MainMenu;
@@ -63,7 +62,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private GameStatus lastGameStatus;
 
 	private final List<Screen> screens;
+
 	private Scenario scenario;
+	private Scenario scenarioBase;
+
+	private boolean canRestartScenario;
 
 	public Game() {
 		this.addKeyListener(this);
@@ -104,6 +107,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		this.showFPS = false;
 
 		this.screens = new ArrayList<>();
+
+		this.canRestartScenario = false;
 
 		this.updateGameStatus(GameStatus.SELECT_LANGUAGE);
 		this.initializeScreen();
@@ -160,8 +165,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		this.screens.add(new SelectLanguage(this));
 	}
 
-	public void initializeScenario() {
-		this.scenario = new Level01(this);
+	public void initializeScenario(Scenario scenario) {
+		this.scenarioBase = scenario;
+		this.canRestartScenario = true;
 	}
 
 	private void toggleFullscreen() {
@@ -223,6 +229,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 					break;
 				}
 			}
+		}
+
+		if (this.canRestartScenario) {
+			this.scenario = this.scenarioBase;
+			this.canRestartScenario = false;
 		}
 	}
 

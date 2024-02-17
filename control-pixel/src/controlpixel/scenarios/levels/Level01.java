@@ -24,4 +24,8 @@ public class Level01 extends Scenario {
 		};
 	}
 
+	protected Scenario restartScenario() {
+		return new Level01(super.game);
+	}
+
 }

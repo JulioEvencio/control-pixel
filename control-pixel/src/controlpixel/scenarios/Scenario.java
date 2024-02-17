@@ -19,7 +19,7 @@ import controlpixel.util.Rect;
 
 public abstract class Scenario {
 
-	private final Game game;
+	protected final Game game;
 
 	protected char[][] map;
 
@@ -72,6 +72,8 @@ public abstract class Scenario {
 	}
 
 	protected abstract void initializeLevel();
+
+	protected abstract Scenario restartScenario();
 
 	private void buildGame() {
 		this.initializeLevel();
@@ -176,6 +178,10 @@ public abstract class Scenario {
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			this.buildMode = false;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_R) {
+			this.game.initializeScenario(this.restartScenario());
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
