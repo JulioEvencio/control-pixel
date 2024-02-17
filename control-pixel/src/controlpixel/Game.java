@@ -22,6 +22,7 @@ import controlpixel.scenarios.levels.Level01;
 import controlpixel.screen.Credits;
 import controlpixel.screen.Exit;
 import controlpixel.screen.MainMenu;
+import controlpixel.screen.Pause;
 import controlpixel.screen.Screen;
 import controlpixel.screen.SelectLanguage;
 import controlpixel.strings.StringError;
@@ -151,9 +152,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		this.screens.clear();
 
 		this.screens.add(new MainMenu(this));
+		this.screens.add(new Pause(this));
 		this.screens.add(new Credits(this));
-		this.screens.add(new SelectLanguage(this));
 		this.screens.add(new Exit(this));
+		this.screens.add(new SelectLanguage(this));
 	}
 
 	public void initializeScenario() {
@@ -317,6 +319,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public void keyReleased(KeyEvent e) {
 		if (this.gameStatus == GameStatus.RUN) {
 			this.scenario.keyReleased(e);
+		} else if (this.gameStatus == GameStatus.PAUSE && e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			this.updateGameStatus(GameStatus.RUN);
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_F2) {

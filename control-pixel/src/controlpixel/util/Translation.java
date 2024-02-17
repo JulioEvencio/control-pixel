@@ -50,7 +50,9 @@ public class Translation {
 				StringScreen.BACK,
 				StringScreen.EXIT_GAME,
 				StringScreen.YES,
-				StringScreen.NO
+				StringScreen.NO,
+				StringScreen.CONTINUE,
+				StringScreen.MENU
 			});
 
 			Translation.toTranslation("level", new GameString[] {

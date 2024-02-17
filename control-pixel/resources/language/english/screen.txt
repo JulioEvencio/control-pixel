@@ -10,3 +10,5 @@ Back
 Do you want to leave the game?
 Yes
 No
+Continue
+Menu

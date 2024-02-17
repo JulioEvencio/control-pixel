@@ -24,4 +24,7 @@ public class StringScreen {
 	public static final GameString YES = new GameString("Yes");
 	public static final GameString NO = new GameString("No");
 
+	public static final GameString CONTINUE = new GameString("Continue");
+	public static final GameString MENU = new GameString("Menu");
+
 }

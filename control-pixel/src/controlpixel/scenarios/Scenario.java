@@ -11,6 +11,7 @@ import controlpixel.scenarios.tiles.Block;
 import controlpixel.scenarios.tiles.Tile;
 import controlpixel.util.Camera;
 import controlpixel.util.CustomColors;
+import controlpixel.util.GameStatus;
 import controlpixel.util.Rect;
 
 public abstract class Scenario {
@@ -98,7 +99,9 @@ public abstract class Scenario {
 	}
 
 	public void keyReleased(KeyEvent e) {
-		// Code
+		if (e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			this.game.updateGameStatus(GameStatus.PAUSE);
+		}
 	}
 
 }

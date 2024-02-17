@@ -10,3 +10,5 @@ Volver
 ¿Quieres abandonar el juego?
 Sí
 No
+Continuar
+Menú
