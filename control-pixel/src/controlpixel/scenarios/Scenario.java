@@ -73,6 +73,7 @@ public abstract class Scenario {
 						break;
 					case 'J':
 						this.player.setPosition(50 * j, 50 * i);
+						this.entities.add(new Entity(50 * j, 50 * i, CustomColors.INVISIBLE));
 						break;
 				}
 			}
@@ -145,6 +146,14 @@ public abstract class Scenario {
 	public void mouseMoved(MouseEvent e) {
 		this.mouseMotionX = e.getX();
 		this.mouseMotionY = e.getY();
+
+		if (this.game.isFullscreen()) {
+			this.mouseMotionX -= this.game.getRendererX();
+			this.mouseMotionY -= this.game.getRendererY();
+
+			this.mouseMotionX *= (double) this.game.getGameWidth() / (double) this.game.getRendererWidth();
+			this.mouseMotionY *= (double) this.game.getGameHeight() / (double) this.game.getRendererHeight();
+		}
 	}
 
 }
