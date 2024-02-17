@@ -1,7 +1,9 @@
 package controlpixel.scenarios;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,8 @@ public abstract class Scenario {
 
 	private final double gravity;
 
+	private final Rect mouseRect;
+
 	public Scenario(Game game) {
 		this.game = game;
 
@@ -34,6 +38,8 @@ public abstract class Scenario {
 		this.player = new Player(this);
 
 		this.gravity = 0.5;
+
+		this.mouseRect = new Rect(0, 0, 50, 50);
 
 		this.buildGame();
 	}
@@ -92,6 +98,9 @@ public abstract class Scenario {
 		}
 
 		this.player.render(render);
+		
+		render.setColor(Color.WHITE);
+		render.drawRect(this.mouseRect.getX(), this.mouseRect.getY(), this.mouseRect.getWidth(), this.mouseRect.getHeight());
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -102,6 +111,11 @@ public abstract class Scenario {
 		if (e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			this.game.updateGameStatus(GameStatus.PAUSE);
 		}
+	}
+
+	public void mouseMoved(MouseEvent e) {
+		this.mouseRect.setX(e.getX() - 25);
+		this.mouseRect.setY(e.getY() - 25);
 	}
 
 }

@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import controlpixel.strings.StringGame;
 import controlpixel.util.GameStatus;
 import controlpixel.util.Util;
 
-public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
+public class Game extends Canvas implements Runnable, KeyListener, MouseListener, MouseMotionListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -67,6 +68,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public Game() {
 		this.addKeyListener(this);
 		this.addMouseListener(this);
+		this.addMouseMotionListener(this);
 
 		this.VERSION = "0.1";
 
@@ -369,6 +371,18 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 				screen.mouseReleased(e);
 				break;
 			}
+		}
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// Code
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		if (this.gameStatus == GameStatus.RUN) {
+			this.scenario.mouseMoved(e);
 		}
 	}
 
