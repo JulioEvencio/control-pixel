@@ -40,6 +40,8 @@ public abstract class Scenario {
 	private int mouseClickX;
 	private int mouseClickY;
 
+	private boolean buildMode;
+
 	public Scenario(Game game) {
 		this.game = game;
 
@@ -59,6 +61,8 @@ public abstract class Scenario {
 
 		this.mouseClickX = 0;
 		this.mouseClickY = 0;
+
+		this.buildMode = true;
 
 		this.buildGame();
 	}
@@ -125,9 +129,11 @@ public abstract class Scenario {
 	}
 
 	public void tick() {
-		this.player.tick();
-
-		this.addBlock();
+		if (this.buildMode) {
+			this.addBlock();
+		} else {
+			this.player.tick();
+		}
 	}
 
 	public void render(Graphics render) {
@@ -168,6 +174,10 @@ public abstract class Scenario {
 	}
 
 	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			this.buildMode = false;
+		}
+
 		if (e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			this.game.updateGameStatus(GameStatus.PAUSE);
 		}
