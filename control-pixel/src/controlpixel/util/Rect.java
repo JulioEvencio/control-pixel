@@ -47,4 +47,8 @@ public class Rect {
 		return collisionX && collisionY;
 	}
 
+	public boolean wasClicked(int x, int y) {
+		return x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.height;
+	}
+
 }

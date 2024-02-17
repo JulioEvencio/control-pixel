@@ -30,7 +30,10 @@ public abstract class Scenario {
 
 	private final double gravity;
 
-	private final Rect mouseRect;
+	private int mouseMotionX;
+	private int mouseMotionY;
+
+	private final Rect mouseMotionRect;
 
 	public Scenario(Game game) {
 		this.game = game;
@@ -42,7 +45,10 @@ public abstract class Scenario {
 
 		this.gravity = 0.5;
 
-		this.mouseRect = new Rect(0, 0, 50, 50);
+		this.mouseMotionX = 0;
+		this.mouseMotionY = 0;
+
+		this.mouseMotionRect = new Rect(0, 0, 50, 50);
 
 		this.buildGame();
 	}
@@ -58,9 +64,10 @@ public abstract class Scenario {
 
 		for (int i = 0; i < this.map.length; i++) {
 			for (int j = 0; j < this.map[0].length; j++) {
-				this.entities.add(new Entity(50 * j, 50 * i, CustomColors.INVISIBLE));
-
 				switch (map[i][j]) {
+					case ' ':
+						this.entities.add(new Entity(50 * j, 50 * i, CustomColors.INVISIBLE));
+						break;
 					case 'B':
 						this.tiles.add(new Block(50 * j, 50 * i));
 						break;
@@ -101,17 +108,28 @@ public abstract class Scenario {
 				tile.render(render);
 			}
 		}
-		
+
+		boolean showMouseMotionRect = false;
+
 		for (Entity entity : this.entities) {
 			if (this.canRender(entity.getRect())) {
 				entity.render(render);
+
+				if (entity.getRect().wasClicked(this.mouseMotionX, this.mouseMotionY)) {
+					showMouseMotionRect = true;
+
+					this.mouseMotionRect.setX(entity.getRect().getX());
+					this.mouseMotionRect.setY(entity.getRect().getY());
+				}
 			}
 		}
 
 		this.player.render(render);
-		
-		render.setColor(Color.WHITE);
-		render.drawRect(this.mouseRect.getX(), this.mouseRect.getY(), this.mouseRect.getWidth(), this.mouseRect.getHeight());
+
+		if (showMouseMotionRect) {
+			render.setColor(Color.WHITE);
+			render.drawRect(this.mouseMotionRect.getX(), this.mouseMotionRect.getY(), this.mouseMotionRect.getWidth(), this.mouseMotionRect.getHeight());
+		}
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -125,8 +143,8 @@ public abstract class Scenario {
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		this.mouseRect.setX(e.getX() - 25);
-		this.mouseRect.setY(e.getY() - 25);
+		this.mouseMotionX = e.getX();
+		this.mouseMotionY = e.getY();
 	}
 
 }
