@@ -13,7 +13,6 @@ public abstract class Tile {
 
 	public Tile(Rect rect, Color color) {
 		this.rect = rect;
-
 		this.color = color;
 	}
 

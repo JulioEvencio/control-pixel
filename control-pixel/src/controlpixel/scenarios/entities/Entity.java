@@ -9,12 +9,10 @@ import controlpixel.util.Rect;
 public class Entity {
 
 	private final Rect rect;
-
 	private final Color color;
 
 	public Entity(int x, int y, Color color) {
 		this.rect = new Rect(x, y, 50, 50);
-
 		this.color = color;
 	}
 

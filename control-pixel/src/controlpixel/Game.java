@@ -341,7 +341,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public void keyTyped(KeyEvent e) {
 		// Code
 	}
-	
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// Code
@@ -359,20 +359,26 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		for (Screen screen : this.screens) {
-			if (screen.getGameStatus() == this.gameStatus) {
-				screen.mousePressed(e);
-				break;
+		if (this.gameStatus != GameStatus.RUN) {
+			for (Screen screen : this.screens) {
+				if (screen.getGameStatus() == this.gameStatus) {
+					screen.mousePressed(e);
+					break;
+				}
 			}
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		for (Screen screen : this.screens) {
-			if (screen.getGameStatus() == this.gameStatus) {
-				screen.mouseReleased(e);
-				break;
+		if (this.gameStatus == GameStatus.RUN) {
+			this.scenario.mouseReleased(e);
+		} else {
+			for (Screen screen : this.screens) {
+				if (screen.getGameStatus() == this.gameStatus) {
+					screen.mouseReleased(e);
+					break;
+				}
 			}
 		}
 	}

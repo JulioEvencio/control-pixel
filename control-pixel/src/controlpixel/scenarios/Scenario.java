@@ -35,6 +35,11 @@ public abstract class Scenario {
 
 	private final Rect mouseMotionRect;
 
+	private boolean hasClick;
+
+	private int mouseClickX;
+	private int mouseClickY;
+
 	public Scenario(Game game) {
 		this.game = game;
 
@@ -49,6 +54,11 @@ public abstract class Scenario {
 		this.mouseMotionY = 0;
 
 		this.mouseMotionRect = new Rect(0, 0, 50, 50);
+
+		this.hasClick = false;
+
+		this.mouseClickX = 0;
+		this.mouseClickY = 0;
 
 		this.buildGame();
 	}
@@ -98,6 +108,12 @@ public abstract class Scenario {
 
 	public void tick() {
 		this.player.tick();
+		
+		if (this.hasClick) {
+			System.out.println("Click");
+
+			this.hasClick = false;
+		}
 	}
 
 	public void render(Graphics render) {
@@ -141,6 +157,13 @@ public abstract class Scenario {
 		if (e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			this.game.updateGameStatus(GameStatus.PAUSE);
 		}
+	}
+
+	public void mouseReleased(MouseEvent e) {
+		this.hasClick = true;
+
+		this.mouseClickX = e.getX();
+		this.mouseClickY = e.getY();
 	}
 
 	public void mouseMoved(MouseEvent e) {
