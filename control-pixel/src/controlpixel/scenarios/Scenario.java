@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controlpixel.Game;
+import controlpixel.scenarios.entities.Entity;
 import controlpixel.scenarios.entities.Player;
 import controlpixel.scenarios.tiles.Block;
 import controlpixel.scenarios.tiles.Tile;
@@ -23,6 +24,7 @@ public abstract class Scenario {
 	protected char[][] map;
 
 	protected final List<Tile> tiles;
+	private final List<Entity> entities;
 
 	private final Player player;
 
@@ -34,6 +36,7 @@ public abstract class Scenario {
 		this.game = game;
 
 		this.tiles = new ArrayList<>();
+		this.entities = new ArrayList<>();
 
 		this.player = new Player(this);
 
@@ -55,6 +58,8 @@ public abstract class Scenario {
 
 		for (int i = 0; i < this.map.length; i++) {
 			for (int j = 0; j < this.map[0].length; j++) {
+				this.entities.add(new Entity(50 * j, 50 * i, CustomColors.INVISIBLE));
+
 				switch (map[i][j]) {
 					case 'B':
 						this.tiles.add(new Block(50 * j, 50 * i));
@@ -94,6 +99,12 @@ public abstract class Scenario {
 		for (Tile tile : this.tiles) {
 			if (this.canRender(tile.getRect())) {
 				tile.render(render);
+			}
+		}
+		
+		for (Entity entity : this.entities) {
+			if (this.canRender(entity.getRect())) {
+				entity.render(render);
 			}
 		}
 
