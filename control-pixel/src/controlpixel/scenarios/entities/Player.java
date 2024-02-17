@@ -64,6 +64,10 @@ public class Player {
 		for (int i = 0; i < this.speedX; i++) {
 			if (this.scenario.isFree(new Rect(this.rect.getX() + this.direction, this.rect.getY(), this.rect.getWidth(), this.rect.getHeight()))) {
 				this.rect.setX(this.rect.getX() + this.direction);
+
+				if (this.scenario.isFree(new Rect(this.rect.getX(), this.rect.getY() + 1, this.rect.getWidth(), this.rect.getHeight()))) {
+					this.rect.setY(this.rect.getY() + 1);
+				}
 			}
 		}
 	}
