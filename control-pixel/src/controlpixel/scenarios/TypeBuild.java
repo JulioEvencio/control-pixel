@@ -1,7 +1,12 @@
 package controlpixel.scenarios;
 
-public enum TypeBuild {
+public class TypeBuild {
 
-	BLOCK, REVERSE, JUMP;
+	public static final int BLOCK = 1;
+	public static final int REVERSE = 2;
+	public static final int JUMP = 3;
+
+	public static final int MIN = 1;
+	public static final int MAX = 2;
 
 }

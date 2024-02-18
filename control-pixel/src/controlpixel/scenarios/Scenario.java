@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public abstract class Scenario {
 
 	private boolean buildMode;
 
-	private TypeBuild typeBuild;
+	private int typeBuild;
 
 	public Scenario(Game game) {
 		this.game = game;
@@ -255,17 +256,19 @@ public abstract class Scenario {
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		this.hasClick = true;
+		if (e.getButton() == MouseEvent.BUTTON1) {
+			this.hasClick = true;
 
-		this.mouseClickX = e.getX();
-		this.mouseClickY = e.getY();
+			this.mouseClickX = e.getX();
+			this.mouseClickY = e.getY();
 
-		if (this.game.isFullscreen()) {
-			this.mouseClickX -= this.game.getRendererX();
-			this.mouseClickY -= this.game.getRendererY();
+			if (this.game.isFullscreen()) {
+				this.mouseClickX -= this.game.getRendererX();
+				this.mouseClickY -= this.game.getRendererY();
 
-			this.mouseClickX *= (double) this.game.getGameWidth() / (double) this.game.getRendererWidth();
-			this.mouseClickY *= (double) this.game.getGameHeight() / (double) this.game.getRendererHeight();
+				this.mouseClickX *= (double) this.game.getGameWidth() / (double) this.game.getRendererWidth();
+				this.mouseClickY *= (double) this.game.getGameHeight() / (double) this.game.getRendererHeight();
+			}
 		}
 	}
 
@@ -280,6 +283,24 @@ public abstract class Scenario {
 			this.mouseMotionX *= (double) this.game.getGameWidth() / (double) this.game.getRendererWidth();
 			this.mouseMotionY *= (double) this.game.getGameHeight() / (double) this.game.getRendererHeight();
 		}
+	}
+
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		int rotation = e.getWheelRotation();
+
+		if (rotation > 0) {
+            this.typeBuild++;
+
+            if (this.typeBuild > TypeBuild.MAX) {
+            	this.typeBuild = TypeBuild.MIN;
+            }
+        } else if (rotation < 0) {
+            this.typeBuild--;
+
+            if (this.typeBuild < TypeBuild.MIN) {
+            	this.typeBuild = TypeBuild.MAX;
+            }
+        }
 	}
 
 }

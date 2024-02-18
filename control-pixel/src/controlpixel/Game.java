@@ -10,6 +10,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ import controlpixel.strings.StringGame;
 import controlpixel.util.GameStatus;
 import controlpixel.util.Util;
 
-public class Game extends Canvas implements Runnable, KeyListener, MouseListener, MouseMotionListener {
+public class Game extends Canvas implements Runnable, KeyListener, MouseListener, MouseMotionListener, MouseWheelListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -72,6 +74,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		this.addKeyListener(this);
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
+		this.addMouseWheelListener(this);
 
 		this.VERSION = "0.1";
 
@@ -397,6 +400,13 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// Code
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		if (this.gameStatus == GameStatus.RUN) {
+			this.scenario.mouseWheelMoved(e);
+		}
 	}
 
 	@Override
