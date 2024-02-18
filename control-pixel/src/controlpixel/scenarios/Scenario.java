@@ -131,26 +131,28 @@ public abstract class Scenario {
 	}
 
 	private void renderBlocksSelected(Graphics render) {
+		int positionBlocksSelected = (this.game.getGameWidth() - 260) / 2;
+
 		render.setColor(CustomColors.GRAY_DARK);
-		render.fillRect(175, this.game.getGameHeight() - 90, 260, 75);
+		render.fillRect(positionBlocksSelected, this.game.getGameHeight() - 90, 250, 75);
 
 		render.setColor(CustomColors.PURPLE);
-		render.fillRect(200, this.game.getGameHeight() - 75, 50, 50);
+		render.fillRect(positionBlocksSelected + 25, this.game.getGameHeight() - 75, 50, 50);
 
 		render.setColor(CustomColors.GREEN_DARK);
-		render.fillRect(280, this.game.getGameHeight() - 75, 50, 50);
+		render.fillRect(positionBlocksSelected + 100, this.game.getGameHeight() - 75, 50, 50);
 
 		render.setColor(CustomColors.WHITE);
-		render.fillRect(360, this.game.getGameHeight() - 75, 50, 50);
+		render.fillRect(positionBlocksSelected + 175, this.game.getGameHeight() - 75, 50, 50);
 
 		int x = 0;
 
 		if (this.typeBuild == TypeBuild.BLOCK) {
-			x = 200;
+			x = positionBlocksSelected + 25;
 		} else if (this.typeBuild == TypeBuild.JUMP) {
-			x = 280;
+			x = positionBlocksSelected + 100;
 		} else if (this.typeBuild == TypeBuild.REVERSE) {
-			x = 360;
+			x = positionBlocksSelected + 175;
 		}
 
 		Graphics2D g = (Graphics2D) render;
@@ -294,6 +296,10 @@ public abstract class Scenario {
 				this.mouseClickX *= (double) this.game.getGameWidth() / (double) this.game.getRendererWidth();
 				this.mouseClickY *= (double) this.game.getGameHeight() / (double) this.game.getRendererHeight();
 			}
+		}
+
+		if (e.getButton() == MouseEvent.BUTTON3) {
+			this.buildMode = false;
 		}
 	}
 
