@@ -25,6 +25,8 @@ public class Player {
 
 	private final Scenario scenario;
 
+	private boolean isDead;
+
 	public Player(Scenario scenario) {
 		this.rect = new Rect(0, 0, 50, 50);
 
@@ -40,6 +42,12 @@ public class Player {
 		this.color = CustomColors.GRAY;
 
 		this.scenario = scenario;
+
+		this.isDead = false;
+	}
+
+	public boolean isDead() {
+		return this.isDead;
 	}
 
 	public void setPosition(int x, int y) {
@@ -123,6 +131,14 @@ public class Player {
 
 					break;
 				}
+			}
+		}
+
+		for (Entity entity : this.scenario.getEntitiesEnemy()) {
+			if (this.rect.isColliding(entity.getRect())) {
+				this.isDead = true;
+
+				return;
 			}
 		}
 

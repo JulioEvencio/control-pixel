@@ -36,6 +36,7 @@ public abstract class Scenario {
 	protected final List<Tile> tiles;
 	private final List<Entity> entities;
 	private final List<Entity> entitiesJump;
+	private final List<Entity> entitiesEnemy;
 	private final List<Entity> entitiesReverse;
 
 	private final Player player;
@@ -62,6 +63,7 @@ public abstract class Scenario {
 		this.tiles = new ArrayList<>();
 		this.entities = new ArrayList<>();
 		this.entitiesJump = new ArrayList<>();
+		this.entitiesEnemy = new ArrayList<>();
 		this.entitiesReverse = new ArrayList<>();
 
 		this.player = new Player(this);
@@ -91,6 +93,10 @@ public abstract class Scenario {
 
 	public List<Entity> getEntitiesJump() {
 		return this.entitiesJump;
+	}
+
+	public List<Entity> getEntitiesEnemy() {
+		return this.entitiesEnemy;
 	}
 
 	public List<Entity> getEntitiesReverse() {
@@ -129,9 +135,13 @@ public abstract class Scenario {
 						this.tiles.add(new GrassLeft(50 * j, 50 * i));
 						break;
 					case 'W':
-						this.entities.add(new Water(50 * j, 50 * i));
+						this.entitiesEnemy.add(new Water(50 * j, 50 * i));
+						this.entitiesEnemy.add(new Water(50 * (j - 1), 50 * i));
+						this.entitiesEnemy.add(new Water(50 * (j + 1), 50 * i));
 						break;
 					case 'J':
+						this.mouseMotionX = 50 * j + 5;
+						this.mouseMotionY = 50 * i + 5;
 						this.player.setPosition(50 * j, 50 * i);
 						break;
 				}
@@ -147,6 +157,10 @@ public abstract class Scenario {
 		}
 
 		return true;
+	}
+
+	private void scenarioRestart() {
+		this.game.initializeScenario(this.restartScenario());
 	}
 
 	private boolean canRender(Rect object) {
@@ -231,12 +245,22 @@ public abstract class Scenario {
 			this.build();
 		} else {
 			this.player.tick();
+
+			if (this.player.isDead()) {
+				this.scenarioRestart();
+			}
 		}
 	}
 
 	public void render(Graphics render) {
 		render.setColor(CustomColors.BLUE);
 		render.fillRect(0, 0, this.game.getGameWidth(), this.game.getGameHeight());
+
+		for (Entity entity : this.entitiesEnemy) {
+			if (this.canRender(entity.getRect())) {
+				entity.render(render);
+			}
+		}
 
 		for (Tile tile : this.tiles) {
 			if (this.canRender(tile.getRect())) {
@@ -299,7 +323,7 @@ public abstract class Scenario {
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_R) {
-			this.game.initializeScenario(this.restartScenario());
+			this.scenarioRestart();
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
