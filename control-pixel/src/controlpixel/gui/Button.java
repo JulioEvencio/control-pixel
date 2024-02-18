@@ -38,8 +38,8 @@ public class Button {
 		widthReleased = 46 * 5;
 		heightReleased = 14 * 5;
 
-		spriteButtonPressed = Spritesheet.getSprite(145, 98, 46, 13);
-		spriteButtonReleased = Spritesheet.getSprite(145, 81, 46, 14);
+		spriteButtonPressed = Spritesheet.getSpriteGUI(145, 98, 46, 13);
+		spriteButtonReleased = Spritesheet.getSpriteGUI(145, 81, 46, 14);
 	}
 
 	public Button(Game game, String text, int x, int y, EventOnClick eventOnClick) {

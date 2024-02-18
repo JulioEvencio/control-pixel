@@ -13,7 +13,14 @@ import java.util.List;
 import controlpixel.Game;
 import controlpixel.scenarios.entities.Entity;
 import controlpixel.scenarios.entities.Player;
+import controlpixel.scenarios.entities.Water;
 import controlpixel.scenarios.tiles.Block;
+import controlpixel.scenarios.tiles.GrassCenter;
+import controlpixel.scenarios.tiles.GrassLeft;
+import controlpixel.scenarios.tiles.GrassRight;
+import controlpixel.scenarios.tiles.GroundCenter;
+import controlpixel.scenarios.tiles.GroundLeft;
+import controlpixel.scenarios.tiles.GroundRight;
 import controlpixel.scenarios.tiles.Tile;
 import controlpixel.util.Camera;
 import controlpixel.util.CustomColors;
@@ -101,10 +108,28 @@ public abstract class Scenario {
 			for (int j = 0; j < this.map[0].length; j++) {
 				switch (map[i][j]) {
 					case ' ':
-						this.entities.add(new Entity(50 * j, 50 * i, CustomColors.INVISIBLE));
+						this.entities.add(new Entity(50 * j, 50 * i));
 						break;
-					case 'B':
-						this.tiles.add(new Block(50 * j, 50 * i));
+					case 'G':
+						this.tiles.add(new GroundCenter(50 * j, 50 * i));
+						break;
+					case 'C':
+						this.tiles.add(new GrassCenter(50 * j, 50 * i));
+						break;
+					case 'R':
+						this.tiles.add(new GrassRight(50 * j, 50 * i));
+						break;
+					case 'H':
+						this.tiles.add(new GroundRight(50 * j, 50 * i));
+						break;
+					case 'F':
+						this.tiles.add(new GroundLeft(50 * j, 50 * i));
+						break;
+					case 'L':
+						this.tiles.add(new GrassLeft(50 * j, 50 * i));
+						break;
+					case 'W':
+						this.entities.add(new Water(50 * j, 50 * i));
 						break;
 					case 'J':
 						this.player.setPosition(50 * j, 50 * i);
@@ -169,11 +194,11 @@ public abstract class Scenario {
 	}
 
 	private void addBlockJump(Entity entity) {
-		this.entitiesJump.add(new Entity(entity.getRect().getX(), entity.getRect().getY(), CustomColors.GREEN_DARK));
+		// this.entitiesJump.add(new Entity(entity.getRect().getX(), entity.getRect().getY(), CustomColors.GREEN_DARK));
 	}
 
 	private void addBlockReverse(Entity entity) {
-		this.entitiesReverse.add(new Entity(entity.getRect().getX(), entity.getRect().getY(), CustomColors.WHITE));
+		// this.entitiesReverse.add(new Entity(entity.getRect().getX(), entity.getRect().getY(), CustomColors.WHITE));
 	}
 
 	private void build() {
@@ -210,7 +235,7 @@ public abstract class Scenario {
 	}
 
 	public void render(Graphics render) {
-		render.setColor(CustomColors.PURPLE_DARK);
+		render.setColor(CustomColors.BLUE);
 		render.fillRect(0, 0, this.game.getGameWidth(), this.game.getGameHeight());
 
 		for (Tile tile : this.tiles) {

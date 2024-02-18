@@ -7,17 +7,17 @@ import controlpixel.util.Camera;
 import controlpixel.util.Rect;
 import controlpixel.util.Spritesheet;
 
-public class Block extends Tile {
+public class GrassCenter extends Tile {
 
 	private final Rect rect;
 
 	private static final BufferedImage sprite;
 
 	static {
-		sprite = Spritesheet.getSpriteMap(96, 0, 16, 16);
+		sprite = Spritesheet.getSpriteMap(16, 0, 16, 16);
 	}
 
-	public Block(int x, int y) {
+	public GrassCenter(int x, int y) {
 		this.rect = new Rect(x, y, 50, 50);
 	}
 
@@ -28,7 +28,7 @@ public class Block extends Tile {
 
 	@Override
 	public void render(Graphics render) {
-		render.drawImage(Block.sprite, this.rect.getX() - Camera.x, this.rect.getY() - Camera.y, this.rect.getWidth(), this.rect.getHeight(), null);
+		render.drawImage(GrassCenter.sprite, this.rect.getX() - Camera.x, this.rect.getY() - Camera.y, this.rect.getWidth(), this.rect.getHeight(), null);
 	}
 
 }

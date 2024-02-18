@@ -9,22 +9,30 @@ import controlpixel.strings.StringError;
 
 public class Spritesheet {
 
-	private static final BufferedImage spritesheet;
+	private static final BufferedImage spritesheetGUI;
+	private static final BufferedImage spritesheetMap;
 
 	static {
-		BufferedImage auxSpritesheet = null;
+		BufferedImage auxSpritesheetGUI = null;
+		BufferedImage auxSpritesheetMap = null;
 
 		try {
-			auxSpritesheet = ImageIO.read(Spritesheet.class.getResource("/sprites/sprites.png"));
+			auxSpritesheetGUI = ImageIO.read(Spritesheet.class.getResource("/sprites/gui.png"));
+			auxSpritesheetMap = ImageIO.read(Spritesheet.class.getResource("/sprites/map.png"));
 		} catch (Exception e) {
 			Game.exitWithError(StringError.ERROR_LOADING_SPRITES.getValue());
 		}
 
-		spritesheet = auxSpritesheet;
+		spritesheetGUI = auxSpritesheetGUI;
+		spritesheetMap = auxSpritesheetMap;
 	}
 
-	public static BufferedImage getSprite(int x, int y, int width, int height) {
-		return Spritesheet.spritesheet.getSubimage(x, y, width, height);
+	public static BufferedImage getSpriteGUI(int x, int y, int width, int height) {
+		return Spritesheet.spritesheetGUI.getSubimage(x, y, width, height);
+	}
+
+	public static BufferedImage getSpriteMap(int x, int y, int width, int height) {
+		return Spritesheet.spritesheetMap.getSubimage(x, y, width, height);
 	}
 
 }
