@@ -25,6 +25,7 @@ public abstract class Scenario {
 
 	protected final List<Tile> tiles;
 	private final List<Entity> entities;
+	private final List<Entity> entitiesReverse;
 
 	private final Player player;
 
@@ -42,11 +43,14 @@ public abstract class Scenario {
 
 	private boolean buildMode;
 
+	private TypeBuild typeBuild;
+
 	public Scenario(Game game) {
 		this.game = game;
 
 		this.tiles = new ArrayList<>();
 		this.entities = new ArrayList<>();
+		this.entitiesReverse = new ArrayList<>();
 
 		this.player = new Player(this);
 
@@ -64,11 +68,17 @@ public abstract class Scenario {
 
 		this.buildMode = true;
 
+		this.typeBuild = TypeBuild.REVERSE;
+
 		this.buildGame();
 	}
 
 	public double getGravity() {
 		return this.gravity;
+	}
+
+	public List<Entity> getEntitiesReverse() {
+		return this.entitiesReverse;
 	}
 
 	protected abstract void initializeLevel();
@@ -111,7 +121,15 @@ public abstract class Scenario {
 		return areaCamera.isColliding(object);
 	}
 
-	private void addBlock() {
+	private void addBlock(Entity entity) {
+		this.tiles.add(new Block(entity.getRect().getX(), entity.getRect().getY()));
+	}
+
+	private void addBlockReverse(Entity entity) {
+		this.entitiesReverse.add(new Entity(entity.getRect().getX(), entity.getRect().getY(), CustomColors.WHITE));
+	}
+
+	private void build() {
 		if (this.hasClick) {
 			List<Entity> removeEntities = new ArrayList<>();
 
@@ -119,20 +137,24 @@ public abstract class Scenario {
 				if (entity.getRect().wasClicked(this.mouseClickX, this.mouseClickY)) {
 					removeEntities.add(entity);
 
-					this.tiles.add(new Block(entity.getRect().getX(), entity.getRect().getY()));
+					if (this.typeBuild == TypeBuild.BLOCK) {
+						this.addBlock(entity);
+					} else if (this.typeBuild == TypeBuild.REVERSE) {
+						this.addBlockReverse(entity);
+					}
+
 					break;
 				}
 			}
 
 			this.entities.removeAll(removeEntities);
-
 			this.hasClick = false;
 		}
 	}
 
 	public void tick() {
 		if (this.buildMode) {
-			this.addBlock();
+			this.build();
 		} else {
 			this.player.tick();
 		}
@@ -160,6 +182,12 @@ public abstract class Scenario {
 					this.mouseMotionRect.setX(entity.getRect().getX());
 					this.mouseMotionRect.setY(entity.getRect().getY());
 				}
+			}
+		}
+
+		for (Entity entity : this.entitiesReverse) {
+			if (this.canRender(entity.getRect())) {
+				entity.render(render);
 			}
 		}
 

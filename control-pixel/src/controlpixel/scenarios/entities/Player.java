@@ -39,7 +39,7 @@ public class Player {
 		this.rect.setY(y);
 	}
 
-	public void reverseDirection() {
+	private void reverseDirection() {
 		this.direction *= -1;
 	}
 
@@ -75,6 +75,12 @@ public class Player {
 	public void tick() {
 		this.applyGravity();
 		this.move();
+
+		for (Entity entity : this.scenario.getEntitiesReverse()) {
+			if (this.rect.isColliding(entity.getRect())) {
+				this.reverseDirection();
+			}
+		}
 	}
 
 	public void render(Graphics render) {
