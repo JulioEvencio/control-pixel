@@ -239,9 +239,9 @@ public abstract class Scenario {
 			this.buildMode = false;
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_1) {
+		if (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
 			this.typeBuild = TypeBuild.BLOCK;
-		} else if (e.getKeyCode() == KeyEvent.VK_2) {
+		} else if (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD2) {
 			this.typeBuild = TypeBuild.REVERSE;
 		}
 
