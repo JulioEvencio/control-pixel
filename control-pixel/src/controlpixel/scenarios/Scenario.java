@@ -1,7 +1,9 @@
 package controlpixel.scenarios;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -68,7 +70,7 @@ public abstract class Scenario {
 
 		this.buildMode = true;
 
-		this.typeBuild = TypeBuild.REVERSE;
+		this.typeBuild = TypeBuild.BLOCK;
 
 		this.buildGame();
 	}
@@ -119,6 +121,33 @@ public abstract class Scenario {
 		Rect areaCamera = new Rect(Camera.x, Camera.y, this.game.getGameWidth(), this.game.getGameHeight());
 
 		return areaCamera.isColliding(object);
+	}
+
+	private void renderBlocksSelected(Graphics render) {
+		render.setColor(CustomColors.GRAY_DARK);
+		render.fillRect(175, this.game.getGameHeight() - 90, 180, 75);
+
+		render.setColor(CustomColors.PURPLE);
+		render.fillRect(200, this.game.getGameHeight() - 75, 50, 50);
+
+		render.setColor(CustomColors.WHITE);
+		render.fillRect(280, this.game.getGameHeight() - 75, 50, 50);
+
+		int x = 0;
+
+		if (this.typeBuild == TypeBuild.BLOCK) {
+			x = 200;
+		} else if (this.typeBuild == TypeBuild.REVERSE) {
+			x = 280;
+		}
+
+		Graphics2D g = (Graphics2D) render;
+		g.setStroke(new BasicStroke(3.0f));
+
+		render.setColor(CustomColors.BLACK);
+		render.drawRect(x, this.game.getGameHeight() - 75, 50, 50);
+
+		g.setStroke(new BasicStroke(1.0f));
 	}
 
 	private void addBlock(Entity entity) {
@@ -197,6 +226,8 @@ public abstract class Scenario {
 			render.setColor(Color.WHITE);
 			render.drawRect(this.mouseMotionRect.getX(), this.mouseMotionRect.getY(), this.mouseMotionRect.getWidth(), this.mouseMotionRect.getHeight());
 		}
+
+		this.renderBlocksSelected(render);
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -206,6 +237,12 @@ public abstract class Scenario {
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			this.buildMode = false;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_1) {
+			this.typeBuild = TypeBuild.BLOCK;
+		} else if (e.getKeyCode() == KeyEvent.VK_2) {
+			this.typeBuild = TypeBuild.REVERSE;
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_R) {
