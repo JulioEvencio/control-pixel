@@ -28,6 +28,7 @@ public abstract class Scenario {
 
 	protected final List<Tile> tiles;
 	private final List<Entity> entities;
+	private final List<Entity> entitiesJump;
 	private final List<Entity> entitiesReverse;
 
 	private final Player player;
@@ -53,6 +54,7 @@ public abstract class Scenario {
 
 		this.tiles = new ArrayList<>();
 		this.entities = new ArrayList<>();
+		this.entitiesJump = new ArrayList<>();
 		this.entitiesReverse = new ArrayList<>();
 
 		this.player = new Player(this);
@@ -78,6 +80,10 @@ public abstract class Scenario {
 
 	public double getGravity() {
 		return this.gravity;
+	}
+
+	public List<Entity> getEntitiesJump() {
+		return this.entitiesJump;
 	}
 
 	public List<Entity> getEntitiesReverse() {
@@ -126,20 +132,25 @@ public abstract class Scenario {
 
 	private void renderBlocksSelected(Graphics render) {
 		render.setColor(CustomColors.GRAY_DARK);
-		render.fillRect(175, this.game.getGameHeight() - 90, 180, 75);
+		render.fillRect(175, this.game.getGameHeight() - 90, 260, 75);
 
 		render.setColor(CustomColors.PURPLE);
 		render.fillRect(200, this.game.getGameHeight() - 75, 50, 50);
 
-		render.setColor(CustomColors.WHITE);
+		render.setColor(CustomColors.GREEN_DARK);
 		render.fillRect(280, this.game.getGameHeight() - 75, 50, 50);
+
+		render.setColor(CustomColors.WHITE);
+		render.fillRect(360, this.game.getGameHeight() - 75, 50, 50);
 
 		int x = 0;
 
 		if (this.typeBuild == TypeBuild.BLOCK) {
 			x = 200;
-		} else if (this.typeBuild == TypeBuild.REVERSE) {
+		} else if (this.typeBuild == TypeBuild.JUMP) {
 			x = 280;
+		} else if (this.typeBuild == TypeBuild.REVERSE) {
+			x = 360;
 		}
 
 		Graphics2D g = (Graphics2D) render;
@@ -153,6 +164,10 @@ public abstract class Scenario {
 
 	private void addBlock(Entity entity) {
 		this.tiles.add(new Block(entity.getRect().getX(), entity.getRect().getY()));
+	}
+
+	private void addBlockJump(Entity entity) {
+		this.entitiesJump.add(new Entity(entity.getRect().getX(), entity.getRect().getY(), CustomColors.GREEN_DARK));
 	}
 
 	private void addBlockReverse(Entity entity) {
@@ -169,6 +184,8 @@ public abstract class Scenario {
 
 					if (this.typeBuild == TypeBuild.BLOCK) {
 						this.addBlock(entity);
+					} else if (this.typeBuild == TypeBuild.JUMP) {
+						this.addBlockJump(entity);
 					} else if (this.typeBuild == TypeBuild.REVERSE) {
 						this.addBlockReverse(entity);
 					}
@@ -215,6 +232,12 @@ public abstract class Scenario {
 			}
 		}
 
+		for (Entity entity : this.entitiesJump) {
+			if (this.canRender(entity.getRect())) {
+				entity.render(render);
+			}
+		}
+
 		for (Entity entity : this.entitiesReverse) {
 			if (this.canRender(entity.getRect())) {
 				entity.render(render);
@@ -243,6 +266,8 @@ public abstract class Scenario {
 		if (e.getKeyCode() == KeyEvent.VK_1 || e.getKeyCode() == KeyEvent.VK_NUMPAD1) {
 			this.typeBuild = TypeBuild.BLOCK;
 		} else if (e.getKeyCode() == KeyEvent.VK_2 || e.getKeyCode() == KeyEvent.VK_NUMPAD2) {
+			this.typeBuild = TypeBuild.JUMP;
+		} else if (e.getKeyCode() == KeyEvent.VK_3 || e.getKeyCode() == KeyEvent.VK_NUMPAD3) {
 			this.typeBuild = TypeBuild.REVERSE;
 		}
 

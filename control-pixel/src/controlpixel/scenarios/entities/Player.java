@@ -116,9 +116,21 @@ public class Player {
 
 		this.toMove();
 
+		if (!this.isJump && !this.scenario.isFree(new Rect(this.rect.getX(), this.rect.getY() + 1, this.rect.getWidth(), this.rect.getHeight()))) {
+			for (Entity entity : this.scenario.getEntitiesJump()) {
+				if (this.rect.isColliding(entity.getRect())) {
+					this.isJump = true;
+
+					break;
+				}
+			}
+		}
+
 		for (Entity entity : this.scenario.getEntitiesReverse()) {
 			if (this.rect.isColliding(entity.getRect())) {
 				this.reverseDirection();
+
+				break;
 			}
 		}
 	}
