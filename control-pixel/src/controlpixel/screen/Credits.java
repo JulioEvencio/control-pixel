@@ -14,10 +14,13 @@ public class Credits extends Screen {
 		super(game, StringScreen.CREDITS.getValue());
 
 		super.texts.add(new Text(StringScreen.PROGRAMMER.getValue(), 50, 130, Color.WHITE));
-		super.texts.add(new Text(StringScreen.PROGRAMMER_LINK.getValue(), 50, 160, Color.WHITE));
+		super.texts.add(new Text(StringScreen.PROGRAMMER_LINK.getValue(), 50, 150, Color.WHITE));
 
-		super.texts.add(new Text(StringScreen.SPRITES_CREDITS.getValue(), 50, 230, Color.WHITE));
-		super.texts.add(new Text(StringScreen.SPRITES_CREDITS_LINK.getValue(), 50, 260, Color.WHITE));
+		super.texts.add(new Text(StringScreen.SPRITES_CREDITS_GUI.getValue(), 50, 180, Color.WHITE));
+		super.texts.add(new Text(StringScreen.SPRITES_CREDITS_LINK_GUI.getValue(), 50, 200, Color.WHITE));
+
+		super.texts.add(new Text(StringScreen.SPRITES_CREDITS_MAP.getValue(), 50, 230, Color.WHITE));
+		super.texts.add(new Text(StringScreen.SPRITES_CREDITS_LINK_MAP.getValue(), 50, 250, Color.WHITE));
 
 		super.buttons.add(new Button(game, StringScreen.BACK.getValue(), 50, game.getGameHeight() - Button.getHeightpressed() - 50, () -> game.updateGameStatus(GameStatus.MAIN_MENU)));
 	}
