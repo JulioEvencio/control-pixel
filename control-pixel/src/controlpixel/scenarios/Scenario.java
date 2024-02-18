@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controlpixel.Game;
+import controlpixel.scenarios.entities.CystalJump;
 import controlpixel.scenarios.entities.Entity;
 import controlpixel.scenarios.entities.Player;
 import controlpixel.scenarios.entities.Water;
@@ -208,7 +209,7 @@ public abstract class Scenario {
 	}
 
 	private void addBlockJump(Entity entity) {
-		// this.entitiesJump.add(new Entity(entity.getRect().getX(), entity.getRect().getY(), CustomColors.GREEN_DARK));
+		this.entitiesJump.add(new CystalJump(entity.getRect().getX(), entity.getRect().getY()));
 	}
 
 	private void addBlockReverse(Entity entity) {
