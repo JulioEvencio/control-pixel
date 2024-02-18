@@ -17,6 +17,10 @@ public class Player {
 	private double speedX;
 	private double speedY;
 
+	private boolean isJump;
+	private final int jumpHeight;
+	private int jumpFrames;
+
 	private final Color color;
 
 	private final Scenario scenario;
@@ -28,6 +32,10 @@ public class Player {
 
 		this.speedX = 3.0;
 		this.speedY = 0.0;
+
+		this.isJump = false;
+		this.jumpHeight = 75;
+		this.jumpFrames = 0;
 
 		this.color = CustomColors.GRAY;
 
@@ -60,7 +68,7 @@ public class Player {
 		}
 	}
 
-	private void move() {
+	private void toMove() {
 		for (int i = 0; i < this.speedX; i++) {
 			if (this.scenario.isFree(new Rect(this.rect.getX() + this.direction, this.rect.getY(), this.rect.getWidth(), this.rect.getHeight()))) {
 				this.rect.setX(this.rect.getX() + this.direction);
@@ -72,9 +80,41 @@ public class Player {
 		}
 	}
 
+	public void toJump() {
+		if (this.jumpFrames < 9) {
+			this.speedY = 8;
+		} else if (this.jumpFrames < 18) {
+			this.speedY = 7;
+		} else if (this.jumpFrames < 27) {
+			this.speedY = 6;
+		} else if (this.jumpFrames < 36) {
+			this.speedY = 5;
+		} else if (this.jumpFrames < 45) {
+			this.speedY = 4;
+		} else {
+			this.speedY = 3;
+		}
+
+		for (int i = 0; i < this.speedY; i++) {
+			if (this.jumpFrames < this.jumpHeight && this.scenario.isFree(new Rect(this.rect.getX(), this.rect.getY() - 1, this.rect.getWidth(), this.rect.getHeight()))) {
+				this.rect.setY(this.rect.getY() - 1);
+				this.jumpFrames++;
+			} else {
+				this.speedY = 0;
+				this.jumpFrames = 0;
+				this.isJump = false;
+			}
+		}
+	}
+
 	public void tick() {
-		this.applyGravity();
-		this.move();
+		if (this.isJump) {
+			this.toJump();
+		} else {
+			this.applyGravity();
+		}
+
+		this.toMove();
 
 		for (Entity entity : this.scenario.getEntitiesReverse()) {
 			if (this.rect.isColliding(entity.getRect())) {
