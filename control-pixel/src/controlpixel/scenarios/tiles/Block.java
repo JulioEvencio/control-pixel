@@ -11,7 +11,7 @@ public class Block extends Tile {
 
 	private final Rect rect;
 
-	private static final BufferedImage sprite;
+	public static final BufferedImage sprite;
 
 	static {
 		sprite = Spritesheet.getSpriteMap(96, 0, 16, 16);

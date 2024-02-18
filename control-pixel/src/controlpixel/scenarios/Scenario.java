@@ -1,9 +1,7 @@
 package controlpixel.scenarios;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -11,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controlpixel.Game;
-import controlpixel.scenarios.entities.CrystalReverse;
 import controlpixel.scenarios.entities.CrystalJump;
+import controlpixel.scenarios.entities.CrystalReverse;
 import controlpixel.scenarios.entities.Entity;
 import controlpixel.scenarios.entities.Player;
 import controlpixel.scenarios.entities.Water;
+import controlpixel.scenarios.interfaces.InterfaceBlocksSelected;
 import controlpixel.scenarios.tiles.Block;
 import controlpixel.scenarios.tiles.GrassCenter;
 import controlpixel.scenarios.tiles.GrassLeft;
@@ -59,6 +58,8 @@ public abstract class Scenario {
 
 	private int typeBuild;
 
+	private final InterfaceBlocksSelected interfaceBlocksSelected;
+
 	public Scenario(Game game) {
 		this.game = game;
 
@@ -86,6 +87,8 @@ public abstract class Scenario {
 
 		this.typeBuild = TypeBuild.BLOCK;
 
+		this.interfaceBlocksSelected = new InterfaceBlocksSelected(game, this);
+
 		this.buildGame();
 	}
 
@@ -103,6 +106,10 @@ public abstract class Scenario {
 
 	public List<Entity> getEntitiesReverse() {
 		return this.entitiesReverse;
+	}
+
+	public int getTypeBuild() {
+		return this.typeBuild;
 	}
 
 	protected abstract void initializeLevel();
@@ -169,40 +176,6 @@ public abstract class Scenario {
 		Rect areaCamera = new Rect(Camera.x, Camera.y, this.game.getGameWidth(), this.game.getGameHeight());
 
 		return areaCamera.isColliding(object);
-	}
-
-	private void renderBlocksSelected(Graphics render) {
-		int positionBlocksSelected = (this.game.getGameWidth() - 260) / 2;
-
-		render.setColor(CustomColors.GRAY_DARK);
-		render.fillRect(positionBlocksSelected, this.game.getGameHeight() - 90, 250, 75);
-
-		render.setColor(CustomColors.PURPLE);
-		render.fillRect(positionBlocksSelected + 25, this.game.getGameHeight() - 75, 50, 50);
-
-		render.setColor(CustomColors.GREEN_DARK);
-		render.fillRect(positionBlocksSelected + 100, this.game.getGameHeight() - 75, 50, 50);
-
-		render.setColor(CustomColors.WHITE);
-		render.fillRect(positionBlocksSelected + 175, this.game.getGameHeight() - 75, 50, 50);
-
-		int x = 0;
-
-		if (this.typeBuild == TypeBuild.BLOCK) {
-			x = positionBlocksSelected + 25;
-		} else if (this.typeBuild == TypeBuild.JUMP) {
-			x = positionBlocksSelected + 100;
-		} else if (this.typeBuild == TypeBuild.REVERSE) {
-			x = positionBlocksSelected + 175;
-		}
-
-		Graphics2D g = (Graphics2D) render;
-		g.setStroke(new BasicStroke(3.0f));
-
-		render.setColor(CustomColors.BLACK);
-		render.drawRect(x, this.game.getGameHeight() - 75, 50, 50);
-
-		g.setStroke(new BasicStroke(1.0f));
 	}
 
 	private void addBlock(Entity entity) {
@@ -304,7 +277,7 @@ public abstract class Scenario {
 			render.drawRect(this.mouseMotionRect.getX(), this.mouseMotionRect.getY(), this.mouseMotionRect.getWidth(), this.mouseMotionRect.getHeight());
 		}
 
-		this.renderBlocksSelected(render);
+		this.interfaceBlocksSelected.renderBlocksSelected(render);
 	}
 
 	public void keyPressed(KeyEvent e) {

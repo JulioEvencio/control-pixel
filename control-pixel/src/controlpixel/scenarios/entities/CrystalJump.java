@@ -8,7 +8,7 @@ import controlpixel.util.Spritesheet;
 
 public class CrystalJump extends Entity {
 
-	private static final BufferedImage sprite;
+	public static final BufferedImage sprite;
 
 	static {
 		sprite = Spritesheet.getSpriteMap(96, 128, 16, 16);

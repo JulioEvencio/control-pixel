@@ -8,7 +8,7 @@ import controlpixel.util.Spritesheet;
 
 public class CrystalReverse extends Entity {
 
-	private static final BufferedImage sprite;
+	public static final BufferedImage sprite;
 
 	static {
 		sprite = Spritesheet.getSpriteMap(80, 128, 16, 16);
