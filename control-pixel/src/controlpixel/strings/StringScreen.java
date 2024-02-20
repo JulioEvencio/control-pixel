@@ -16,10 +16,13 @@ public class StringScreen {
 	public static final GameString PROGRAMMER_LINK = new GameString("Github: https://github.com/JulioEvencio");
 
 	public static final GameString SPRITES_CREDITS_GUI = new GameString("Sprites - GUI: Mounir Tohami");
-	public static final GameString SPRITES_CREDITS_LINK_GUI = new GameString("itch.io: https://mounirtohami.itch.io/");
+	public static final GameString SPRITES_CREDITS_LINK_GUI = new GameString("itch.io: https://mounirtohami.itch.io");
 
 	public static final GameString SPRITES_CREDITS_MAP = new GameString("Sprites - MAP: Rotting Pixels");
-	public static final GameString SPRITES_CREDITS_LINK_MAP = new GameString("itch.io: https://rottingpixels.itch.io/");
+	public static final GameString SPRITES_CREDITS_LINK_MAP = new GameString("itch.io: https://rottingpixels.itch.io");
+
+	public static final GameString SPRITES_CREDITS_PLAYER = new GameString("Sprites - PLAYER: Immunitys");
+	public static final GameString SPRITES_CREDITS_LINK_PLAYER = new GameString("itch.io: https://immunitys.itch.io");
 
 	public static final GameString BACK = new GameString("Back");
 

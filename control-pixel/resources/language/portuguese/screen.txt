@@ -5,9 +5,11 @@ Pressione F2 para ativar/desativar tela cheia
 Programador: Júlio Igreja
 Github: https://github.com/JulioEvencio
 Sprites - GUI: Mounir Tohami
-itch.io: https://mounirtohami.itch.io/
+itch.io: https://mounirtohami.itch.io
 Sprites - MAP: Rotting Pixels
-itch.io: https://rottingpixels.itch.io/
+itch.io: https://rottingpixels.itch.io
+Sprites - PLAYER: Immunitys
+itch.io: https://immunitys.itch.io
 Voltar
 Você quer sair do jogo?
 Sim
