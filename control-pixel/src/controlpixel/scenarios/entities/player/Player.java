@@ -1,11 +1,9 @@
-package controlpixel.scenarios.entities;
+package controlpixel.scenarios.entities.player;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import controlpixel.scenarios.Scenario;
-import controlpixel.util.Camera;
-import controlpixel.util.CustomColors;
+import controlpixel.scenarios.entities.Entity;
 import controlpixel.util.Rect;
 
 public class Player {
@@ -21,7 +19,7 @@ public class Player {
 	private final int jumpHeight;
 	private int jumpFrames;
 
-	private final Color color;
+	private final PlayerSprite sprite;
 
 	private final Scenario scenario;
 
@@ -39,7 +37,7 @@ public class Player {
 		this.jumpHeight = 75;
 		this.jumpFrames = 0;
 
-		this.color = CustomColors.GRAY;
+		this.sprite = new PlayerSprite(0, 0, 50, 50);
 
 		this.scenario = scenario;
 
@@ -53,10 +51,14 @@ public class Player {
 	public void setPosition(int x, int y) {
 		this.rect.setX(x);
 		this.rect.setY(y);
+
+		this.sprite.updatePosition(this.rect.getX(), this.rect.getY());
 	}
 
 	private void reverseDirection() {
 		this.direction *= -1;
+
+		this.sprite.reverseDirection();
 	}
 
 	public void applyGravity() {
@@ -149,11 +151,13 @@ public class Player {
 				break;
 			}
 		}
+
+		this.sprite.tick();
+		this.sprite.updatePosition(this.rect.getX(), this.rect.getY());
 	}
 
 	public void render(Graphics render) {
-		render.setColor(this.color);
-		render.fillRect((int) (this.rect.getX() - Camera.x), (int) (this.rect.getY() - Camera.y), this.rect.getWidth(), this.rect.getHeight());
+		this.sprite.render(render);
 	}
 
 }
