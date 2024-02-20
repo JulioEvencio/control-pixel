@@ -15,7 +15,7 @@ public class Water extends Entity {
 	}
 
 	public Water(int x, int y) {
-		super(x, y, 50, 50);
+		super(x - 5, y, 60, 50);
 	}
 
 	@Override

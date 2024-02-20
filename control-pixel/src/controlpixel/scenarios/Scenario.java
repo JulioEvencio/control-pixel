@@ -145,8 +145,6 @@ public abstract class Scenario {
 						break;
 					case 'W':
 						this.entitiesEnemy.add(new Water(50 * j, 50 * i));
-						this.entitiesEnemy.add(new Water(50 * (j - 1), 50 * i));
-						this.entitiesEnemy.add(new Water(50 * (j + 1), 50 * i));
 						break;
 					case 'J':
 						this.mouseMotionX = 50 * j + 5;
