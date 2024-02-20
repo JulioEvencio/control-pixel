@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -101,6 +103,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		this.frame.pack();
 		this.frame.setLocationRelativeTo(null);
 		this.frame.setVisible(true);
+
+		try {
+			Image imageIcon = ImageIO.read(Game.class.getResource("/sprites/icon.png"));
+
+			frame.setIconImage(imageIcon);
+		} catch (Exception e) {
+			Game.exitWithError(StringError.ERROR_LOADING_FILES.getValue());
+		}
 
 		this.renderer = new BufferedImage(this.WIDTH, this.HEIGHT, BufferedImage.TYPE_INT_RGB);
 
