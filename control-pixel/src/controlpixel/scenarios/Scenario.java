@@ -123,7 +123,7 @@ public abstract class Scenario {
 			for (int j = 0; j < this.map[0].length; j++) {
 				switch (map[i][j]) {
 					case ' ':
-						this.entities.add(new Entity(50 * j, 50 * i));
+						this.entities.add(new Entity(50 * j, 50 * i, 50, 50));
 						break;
 					case 'G':
 						this.tiles.add(new GroundCenter(50 * j, 50 * i));

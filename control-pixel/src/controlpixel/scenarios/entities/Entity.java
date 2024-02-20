@@ -8,8 +8,8 @@ public class Entity {
 
 	protected final Rect rect;
 
-	public Entity(int x, int y) {
-		this.rect = new Rect(x, y, 50, 50);
+	public Entity(int x, int y, int width, int height) {
+		this.rect = new Rect(x, y, width, height);
 	}
 
 	public Rect getRect() {
