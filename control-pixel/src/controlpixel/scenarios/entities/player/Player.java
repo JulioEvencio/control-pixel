@@ -26,7 +26,7 @@ public class Player {
 	private boolean isDead;
 
 	public Player(Scenario scenario) {
-		this.rect = new Rect(0, 0, 50, 50);
+		this.rect = new Rect(0, 0, 20, 40);
 
 		this.direction = 1;
 
@@ -52,7 +52,11 @@ public class Player {
 		this.rect.setX(x);
 		this.rect.setY(y);
 
-		this.sprite.updatePosition(this.rect.getX(), this.rect.getY());
+		this.setPositionSprite();
+	}
+
+	private void setPositionSprite() {
+		this.sprite.updatePosition(this.rect.getX() - 15, this.rect.getY() - 10);
 	}
 
 	private void reverseDirection() {
@@ -153,7 +157,8 @@ public class Player {
 		}
 
 		this.sprite.tick();
-		this.sprite.updatePosition(this.rect.getX(), this.rect.getY());
+
+		this.setPositionSprite();
 	}
 
 	public void render(Graphics render) {
