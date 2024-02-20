@@ -30,7 +30,7 @@ public class Player {
 
 		this.direction = 1;
 
-		this.speedX = 3.0;
+		this.speedX = 1.5;
 		this.speedY = 0.0;
 
 		this.isJump = false;
