@@ -149,7 +149,7 @@ public abstract class Scenario {
 					case 'J':
 						this.mouseMotionX = 50 * j + 5;
 						this.mouseMotionY = 50 * i + 5;
-						this.player.setPosition(50 * j, 50 * i);
+						this.player.setPosition(50 * j + 15, 50 * i + 10);
 						break;
 				}
 			}
