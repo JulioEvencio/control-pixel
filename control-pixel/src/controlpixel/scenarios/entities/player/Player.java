@@ -122,6 +122,12 @@ public class Player {
 	}
 
 	public void tick() {
+		if (this.scenario.getPortal().getRect().isColliding(this.rect)) {
+			this.scenario.setLevelFinished();
+
+			return;
+		}
+
 		if (this.isJump) {
 			this.toJump();
 		} else {

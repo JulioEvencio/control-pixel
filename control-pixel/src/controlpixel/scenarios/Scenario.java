@@ -14,6 +14,7 @@ import controlpixel.scenarios.entities.CrystalReverse;
 import controlpixel.scenarios.entities.Entity;
 import controlpixel.scenarios.entities.Water;
 import controlpixel.scenarios.entities.player.Player;
+import controlpixel.scenarios.entities.portal.Portal;
 import controlpixel.scenarios.interfaces.InterfaceBlocksSelected;
 import controlpixel.scenarios.tiles.Block;
 import controlpixel.scenarios.tiles.GrassCenter;
@@ -32,9 +33,13 @@ public abstract class Scenario {
 
 	protected final Game game;
 
+	private boolean levelFinished;
+
 	protected char[][] map;
 
-	protected final List<Tile> tiles;
+	private Portal portal;
+
+	private final List<Tile> tiles;
 	private final List<Entity> entities;
 	private final List<Entity> entitiesJump;
 	private final List<Entity> entitiesEnemy;
@@ -62,6 +67,8 @@ public abstract class Scenario {
 
 	public Scenario(Game game) {
 		this.game = game;
+
+		this.levelFinished = false;
 
 		this.tiles = new ArrayList<>();
 		this.entities = new ArrayList<>();
@@ -94,6 +101,10 @@ public abstract class Scenario {
 
 	public double getGravity() {
 		return this.gravity;
+	}
+
+	public Portal getPortal() {
+		return this.portal;
 	}
 
 	public List<Entity> getEntitiesJump() {
@@ -146,6 +157,9 @@ public abstract class Scenario {
 					case 'W':
 						this.entitiesEnemy.add(new Water(50 * j, 50 * i));
 						break;
+					case 'P':
+						this.portal = new Portal(50 * j, 50 * i);
+						break;
 					case 'J':
 						this.mouseMotionX = 50 * j + 5;
 						this.mouseMotionY = 50 * i + 5;
@@ -164,6 +178,10 @@ public abstract class Scenario {
 		}
 
 		return true;
+	}
+
+	public void setLevelFinished() {
+		this.levelFinished = true;
 	}
 
 	private void scenarioRestart() {
@@ -216,7 +234,10 @@ public abstract class Scenario {
 	public void tick() {
 		if (this.buildMode) {
 			this.build();
+		} else if (this.levelFinished) {
+			System.out.println("Level Finished");
 		} else {
+			this.portal.tick();
 			this.player.tick();
 
 			if (this.player.isDead()) {
@@ -266,6 +287,10 @@ public abstract class Scenario {
 			if (this.canRender(entity.getRect())) {
 				entity.render(render);
 			}
+		}
+
+		if (this.canRender(this.portal.getRect())) {
+			this.portal.render(render);
 		}
 
 		this.player.render(render);
