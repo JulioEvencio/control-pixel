@@ -51,6 +51,8 @@ public class Translation {
 				StringScreen.SPRITES_CREDITS_LINK_MAP,
 				StringScreen.SPRITES_CREDITS_PLAYER,
 				StringScreen.SPRITES_CREDITS_LINK_PLAYER,
+				StringScreen.SPRITES_CREDITS_PORTAL,
+				StringScreen.SPRITES_CREDITS_LINK_PORTAL,
 				StringScreen.BACK,
 				StringScreen.EXIT_GAME,
 				StringScreen.YES,

@@ -10,6 +10,8 @@ Sprites - MAP: Rotting Pixels
 itch.io: https://rottingpixels.itch.io
 Sprites - PLAYER: Immunitys
 itch.io: https://immunitys.itch.io
+Sprites - PORTAL: LetargicDev
+Open Game Art: https://opengameart.org/content/portals
 Back
 Do you want to leave the game?
 Yes
