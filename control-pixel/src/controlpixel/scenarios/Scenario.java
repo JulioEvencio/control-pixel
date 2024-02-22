@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controlpixel.Game;
+import controlpixel.gui.TextRender;
 import controlpixel.scenarios.entities.CrystalJump;
 import controlpixel.scenarios.entities.CrystalReverse;
 import controlpixel.scenarios.entities.Entity;
@@ -36,6 +37,8 @@ public abstract class Scenario {
 	private boolean levelFinished;
 
 	protected char[][] map;
+
+	protected final List<TextRender> texts;
 
 	private Portal portal;
 
@@ -69,6 +72,8 @@ public abstract class Scenario {
 		this.game = game;
 
 		this.levelFinished = false;
+
+		this.texts = new ArrayList<>();
 
 		this.tiles = new ArrayList<>();
 		this.entities = new ArrayList<>();
@@ -249,6 +254,12 @@ public abstract class Scenario {
 	public void render(Graphics render) {
 		render.setColor(CustomColors.BLUE);
 		render.fillRect(0, 0, this.game.getGameWidth(), this.game.getGameHeight());
+
+		for (TextRender text : this.texts) {
+			if (this.canRender(text.getRect())) {
+				text.render(render);
+			}
+		}
 
 		for (Entity entity : this.entitiesEnemy) {
 			if (this.canRender(entity.getRect())) {

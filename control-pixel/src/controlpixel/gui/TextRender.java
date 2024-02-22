@@ -37,7 +37,7 @@ public class TextRender {
 	public void render(Graphics render) {
 		render.setColor(this.color);
 		render.setFont(Util.getFontDefault());
-		render.drawString(this.text, this.rect.getX() - Camera.x, this.rect.getY());
+		render.drawString(this.text, this.rect.getX() - Camera.x, this.rect.getY() - Camera.y);
 	}
 
 }
