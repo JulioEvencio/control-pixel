@@ -5,11 +5,10 @@ import java.awt.Color;
 import controlpixel.Game;
 import controlpixel.gui.TextRender;
 import controlpixel.scenarios.Scenario;
-import controlpixel.strings.StringLevel;
 
-public class Level01 extends Scenario {
+public class LevelTest extends Scenario {
 
-	public Level01(Game game) {
+	public LevelTest(Game game) {
 		super(game);
 	}
 
@@ -30,9 +29,9 @@ public class Level01 extends Scenario {
 
 	@Override
 	protected void setStrings() {
-		super.texts.add(new TextRender(StringLevel.LEVEL_01.getValue(), 80, 80, Color.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender("Level Test", 80, 80, Color.WHITE, super.game.getRender()));
 	}
-
+	
 	@Override
 	protected Scenario nextLevel() {
 		return new LevelTest(super.game);
@@ -40,7 +39,7 @@ public class Level01 extends Scenario {
 
 	@Override
 	protected Scenario getCurrentScenario() {
-		return new Level01(super.game);
+		return new LevelTest(super.game);
 	}
 
 }

@@ -132,7 +132,9 @@ public abstract class Scenario {
 
 	protected abstract void setStrings();
 
-	protected abstract Scenario restartScenario();
+	protected abstract Scenario nextLevel();
+
+	protected abstract Scenario getCurrentScenario();
 
 	private void buildGame() {
 		this.initializeLevel();
@@ -193,7 +195,7 @@ public abstract class Scenario {
 	}
 
 	private void scenarioRestart() {
-		this.game.initializeScenario(this.restartScenario());
+		this.game.initializeScenario(this.getCurrentScenario());
 	}
 
 	private boolean canRender(Rect object) {
@@ -243,7 +245,7 @@ public abstract class Scenario {
 		if (this.buildMode) {
 			this.build();
 		} else if (this.levelFinished) {
-			System.out.println("Level Finished");
+			this.game.initializeScenario(this.nextLevel());
 		} else {
 			this.portal.tick();
 			this.player.tick();
