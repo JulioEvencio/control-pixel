@@ -1,7 +1,11 @@
 package controlpixel.scenarios.levels;
 
+import java.awt.Color;
+
 import controlpixel.Game;
+import controlpixel.gui.TextRender;
 import controlpixel.scenarios.Scenario;
+import controlpixel.strings.StringLevel;
 
 public class Level01 extends Scenario {
 
@@ -22,6 +26,11 @@ public class Level01 extends Scenario {
 			{' ', 'F', 'G', 'H', ' ', 'F', 'G', 'G', 'G', 'G', 'G', 'H', ' ', 'F', 'G', 'G'},
 			{'W', 'F', 'G', 'H', 'W', 'F', 'G', 'G', 'G', 'G', 'G', 'H', 'W', 'F', 'G', 'G'},
 		};
+	}
+
+	@Override
+	protected void setStrings() {
+		super.texts.add(new TextRender(StringLevel.LEVEL_01.getValue(), 80, 80, Color.WHITE, super.game.getRender()));
 	}
 
 	protected Scenario restartScenario() {

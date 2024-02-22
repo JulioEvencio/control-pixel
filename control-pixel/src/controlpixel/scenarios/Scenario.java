@@ -130,10 +130,13 @@ public abstract class Scenario {
 
 	protected abstract void initializeLevel();
 
+	protected abstract void setStrings();
+
 	protected abstract Scenario restartScenario();
 
 	private void buildGame() {
 		this.initializeLevel();
+		this.setStrings();
 
 		for (int i = 0; i < this.map.length; i++) {
 			for (int j = 0; j < this.map[0].length; j++) {

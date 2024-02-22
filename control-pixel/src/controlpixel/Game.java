@@ -155,6 +155,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		return this.rendererHeight;
 	}
 
+	public Graphics getRender() {
+		return this.renderer.getGraphics();
+	}
+
 	public boolean isFullscreen() {
 		return this.isFullscreen;
 	}
