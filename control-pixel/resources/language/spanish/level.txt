@@ -11,3 +11,5 @@ Use desplazamiento del ratón o números 1, 2 y 3 para cambiar elemento a constr
 Usa el cristal verde para hacer saltar a Pixel
 El portal está al otro lado
 Usa el cristal azul para invertir la dirección del Pixel
+Este nivel es muy grande
+Utilice las teclas WASD o las teclas de flecha para mover la cámara

@@ -11,3 +11,5 @@ Use the mouse scroll or the numbers 1, 2 and 3 to change the item to be built
 Use the green crystal to make Pixel jump
 The portal is on the other side
 Use the blue crystal to reverse the direction of the Pixel
+This level is very big
+Use the WASD keys or arrow keys to move the camera
