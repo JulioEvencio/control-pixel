@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import controlpixel.scenarios.Scenario;
 import controlpixel.scenarios.entities.Entity;
+import controlpixel.util.Camera;
 import controlpixel.util.Rect;
 
 public class Player {
@@ -53,6 +54,7 @@ public class Player {
 		this.rect.setY(y);
 
 		this.setPositionSprite();
+		this.updateCamera();
 	}
 
 	private void setPositionSprite() {
@@ -121,6 +123,11 @@ public class Player {
 		}
 	}
 
+	private void updateCamera() {
+		Camera.x = Camera.clamp(this.rect.getX() - (this.scenario.getGame().getGameWidth() / 2), 0, this.scenario.getWidth() - this.scenario.getGame().getGameWidth());
+		Camera.y = Camera.clamp(this.rect.getY() - (this.scenario.getGame().getGameHeight() / 2), 0, this.scenario.getHeight() - this.scenario.getGame().getGameHeight());
+	}
+
 	public void tick() {
 		if (this.scenario.getPortal().getRect().isColliding(this.rect)) {
 			this.scenario.setLevelFinished();
@@ -165,6 +172,7 @@ public class Player {
 		this.sprite.tick();
 
 		this.setPositionSprite();
+		this.updateCamera();
 	}
 
 	public void render(Graphics render) {

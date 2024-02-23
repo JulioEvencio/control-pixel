@@ -38,6 +38,9 @@ public abstract class Scenario {
 
 	protected char[][] map;
 
+	private int width;
+	private int height;
+
 	protected final List<TextRender> texts;
 
 	private Portal portal;
@@ -104,6 +107,18 @@ public abstract class Scenario {
 		this.buildGame();
 	}
 
+	public Game getGame() {
+		return this.game;
+	}
+
+	public int getWidth() {
+		return this.width;
+	}
+
+	public int getHeight() {
+		return this.height;
+	}
+
 	public double getGravity() {
 		return this.gravity;
 	}
@@ -139,6 +154,9 @@ public abstract class Scenario {
 	private void buildGame() {
 		this.initializeLevel();
 		this.setStrings();
+
+		this.width = this.map[0].length * 50;
+		this.height = this.map.length * 50;
 
 		for (int i = 0; i < this.map.length; i++) {
 			for (int j = 0; j < this.map[0].length; j++) {

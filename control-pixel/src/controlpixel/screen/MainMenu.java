@@ -5,7 +5,7 @@ import java.awt.Color;
 import controlpixel.Game;
 import controlpixel.gui.Button;
 import controlpixel.gui.Text;
-import controlpixel.scenarios.levels.Level01;
+import controlpixel.scenarios.levels.LevelTest;
 import controlpixel.strings.StringGame;
 import controlpixel.strings.StringScreen;
 import controlpixel.util.GameStatus;
@@ -17,7 +17,7 @@ public class MainMenu extends Screen {
 		super(game, StringGame.TITLE.getValue());
 
 		super.buttons.add(new Button(game, StringScreen.NEW_GAME.getValue(), (game.getGameWidth() - Button.getWidthPressed()) / 2, 120, () -> {
-			game.initializeScenario(new Level01(game));
+			game.initializeScenario(new LevelTest(game));
 			game.updateGameStatus(GameStatus.RUN);
 		}));
 		super.buttons.add(new Button(game, StringScreen.CREDITS.getValue(), (game.getGameWidth() - Button.getWidthPressed()) / 2, 220, () -> game.updateGameStatus(GameStatus.CREDITS)));
