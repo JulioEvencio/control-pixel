@@ -54,7 +54,6 @@ public class Player {
 		this.rect.setY(y);
 
 		this.setPositionSprite();
-		this.updateCamera();
 	}
 
 	private void setPositionSprite() {

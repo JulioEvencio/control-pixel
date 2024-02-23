@@ -71,6 +71,11 @@ public abstract class Scenario {
 
 	private final InterfaceBlocksSelected interfaceBlocksSelected;
 
+	private boolean moveUp;
+	private boolean moveDown;
+	private boolean moveRight;
+	private boolean moveLeft;
+
 	public Scenario(Game game) {
 		this.game = game;
 
@@ -103,6 +108,11 @@ public abstract class Scenario {
 		this.typeBuild = TypeBuild.BLOCK;
 
 		this.interfaceBlocksSelected = new InterfaceBlocksSelected(game, this);
+
+		this.moveUp = false;
+		this.moveDown = false;
+		this.moveRight = false;
+		this.moveLeft = false;
 
 		this.buildGame();
 	}
@@ -262,9 +272,47 @@ public abstract class Scenario {
 		}
 	}
 
+	private void moveCamera() {
+		if (this.moveUp) {
+			Camera.y--;
+
+			if (Camera.y < 0) {
+				Camera.y = 0;
+			}
+		}
+
+		if (this.moveDown) {
+			Camera.y++;
+
+			if (Camera.y > this.height - this.game.getGameHeight()) {
+				Camera.y = this.height - this.game.getGameHeight();
+			}
+		}
+
+		if (this.moveRight) {
+			Camera.x++;
+
+			if (Camera.x > this.width - this.game.getGameWidth()) {
+				Camera.x = this.width - this.game.getGameWidth();
+			}
+		}
+
+		if (this.moveLeft) {
+			Camera.x--;
+
+			if (Camera.x < 0) {
+				Camera.x = 0;
+			}
+		}
+	}
+
 	public void tick() {
 		if (this.buildMode) {
 			this.build();
+
+			for (int i = 0; i < 3; i++) {
+				this.moveCamera();
+			}
 		} else if (this.levelFinished) {
 			this.game.initializeScenario(this.nextLevel());
 		} else {
@@ -341,10 +389,40 @@ public abstract class Scenario {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		// Code
+		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+			this.moveUp = true;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+			this.moveDown = true;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+			this.moveRight = true;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+			this.moveLeft = true;
+		}
 	}
 
 	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+			this.moveUp = false;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+			this.moveDown = false;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+			this.moveRight = false;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+			this.moveLeft = false;
+		}
+
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			this.buildMode = false;
 		}
