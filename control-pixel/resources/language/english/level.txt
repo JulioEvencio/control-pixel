@@ -9,3 +9,5 @@ Press F4 to enable/disable music
 At this level some blocks are getting in the way
 Use the mouse scroll or the numbers 1, 2 and 3 to change the item to be built
 Use the green crystal to make Pixel jump
+The portal is on the other side
+Use the blue crystal to reverse the direction of the Pixel

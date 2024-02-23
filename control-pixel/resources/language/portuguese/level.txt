@@ -9,3 +9,5 @@ Pressione F4 para ativar/desativar música
 Neste nível alguns blocos estão atrapalhando o caminho
 Use o scroll do mouse ou os números 1, 2 e 3 para alterar o item a ser construído
 Use o cristal verde para fazer Pixel pular
+O portal está do outro lado
+Use o cristal azul para inverter a direção de Pixel

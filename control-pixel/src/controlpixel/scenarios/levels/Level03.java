@@ -6,9 +6,9 @@ import controlpixel.scenarios.Scenario;
 import controlpixel.strings.StringLevel;
 import controlpixel.util.CustomColors;
 
-public class Level02 extends Scenario {
+public class Level03 extends Scenario {
 
-	public Level02(Game game) {
+	public Level03(Game game) {
 		super(game);
 	}
 
@@ -20,7 +20,7 @@ public class Level02 extends Scenario {
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-			{' ', ' ', 'J', ' ', ' ', 'B', 'B', 'B', ' ', ' ', ' ', ' ', ' ', ' ', 'P', ' '},
+			{' ', ' ', 'P', ' ', ' ', ' ', 'J', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
 			{' ', 'L', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C'},
 			{' ', 'F', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
 			{'W', 'F', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'},
@@ -29,21 +29,20 @@ public class Level02 extends Scenario {
 
 	@Override
 	protected void setStrings() {
-		super.texts.add(new TextRender(StringLevel.LEVEL_02.getValue(), 25, 25, CustomColors.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.LEVEL_03.getValue(), 25, 25, CustomColors.WHITE, super.game.getRender()));
 
-		super.texts.add(new TextRender(StringLevel.TUTORIAL_BLOCK_PATH.getValue(), 25, 50, CustomColors.WHITE, super.game.getRender()));
-		super.texts.add(new TextRender(StringLevel.TUTORIAL_SCROLL.getValue(), 25, 75, CustomColors.WHITE, super.game.getRender()));
-		super.texts.add(new TextRender(StringLevel.TUTORIAL_CRYSTAL_GREEN.getValue(), 25, 100, CustomColors.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.TUTORIAL_PORTAL_SIDE.getValue(), 25, 50, CustomColors.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.TUTORIAL_CRYSTAL_BLUE.getValue(), 25, 75, CustomColors.WHITE, super.game.getRender()));
 	}
 
 	@Override
 	protected Scenario nextLevel() {
-		return new Level03(super.game);
+		return new LevelTest(super.game);
 	}
 
 	@Override
 	protected Scenario getCurrentScenario() {
-		return new Level02(super.game);
+		return new Level03(super.game);
 	}
 
 }

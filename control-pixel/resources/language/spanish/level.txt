@@ -9,3 +9,5 @@ Pulsa F4 para habilitar/deshabilitar la música
 En este nivel algunos bloques se interponen en el camino
 Use desplazamiento del ratón o números 1, 2 y 3 para cambiar elemento a construir
 Usa el cristal verde para hacer saltar a Pixel
+El portal está al otro lado
+Usa el cristal azul para invertir la dirección del Pixel
