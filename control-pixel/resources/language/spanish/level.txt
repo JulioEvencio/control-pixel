@@ -1,0 +1,8 @@
+Ayuda a Pixel a llegar al portal
+Usa el ratón para construir un bloque y completar el camino
+Pulsa barra espaciadora o botón derecho del mouse para salir del modo de compilación
+Pulsa R para reiniciar el nivel
+Pulsa P o ESC para pausar el juego
+Presione F2 para habilitar/deshabilitar la pantalla completa
+Pulsa F3 para mostrar/ocultar FPS
+Pulsa F4 para habilitar/deshabilitar la música

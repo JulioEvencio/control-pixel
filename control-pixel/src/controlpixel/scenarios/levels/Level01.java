@@ -1,11 +1,10 @@
 package controlpixel.scenarios.levels;
 
-import java.awt.Color;
-
 import controlpixel.Game;
 import controlpixel.gui.TextRender;
 import controlpixel.scenarios.Scenario;
 import controlpixel.strings.StringLevel;
+import controlpixel.util.CustomColors;
 
 public class Level01 extends Scenario {
 
@@ -30,11 +29,16 @@ public class Level01 extends Scenario {
 
 	@Override
 	protected void setStrings() {
-		super.texts.add(new TextRender(StringLevel.LEVEL_01.getValue(), 25, 25, Color.WHITE, super.game.getRender()));
-		super.texts.add(new TextRender(StringLevel.LINE_02.getValue(), 25, 50, Color.WHITE, super.game.getRender()));
-		super.texts.add(new TextRender(StringLevel.LINE_03.getValue(), 25, 75, Color.WHITE, super.game.getRender()));
-		super.texts.add(new TextRender(StringLevel.LINE_04.getValue(), 25, 100, Color.WHITE, super.game.getRender()));
-		super.texts.add(new TextRender(StringLevel.LINE_05.getValue(), 25, 125, Color.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.LEVEL_01.getValue(), 25, 25, CustomColors.WHITE, super.game.getRender()));
+
+		super.texts.add(new TextRender(StringLevel.TUTORIAL_HELP_PIXEL.getValue(), 25, 50, CustomColors.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.TUTORIAL_USE_MOUSE_BLOCK.getValue(), 25, 75, CustomColors.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.TUTORIAL_EXIT_BUILD_MODE.getValue(), 25, 100, CustomColors.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.TUTORIAL_RESTART.getValue(), 25, 125, CustomColors.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.TUTORIAL_PAUSE.getValue(), 25, 150, CustomColors.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.TUTORIAL_FULL_SCREEN.getValue(), 25, 175, CustomColors.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.TUTORIAL_FPS.getValue(), 25, 200, CustomColors.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.TUTORIAL_MUSIC.getValue(), 25, 225, CustomColors.WHITE, super.game.getRender()));
 	}
 
 	@Override

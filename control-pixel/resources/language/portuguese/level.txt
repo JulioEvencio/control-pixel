@@ -1,0 +1,8 @@
+Ajude Pixel a chegar ao portal
+Use o mouse para construir um bloco e completar o caminho
+Pressione espaço ou botão direito do mouse para sair do modo de construção
+Pressione R para recomeçar o level
+Pressione P ou ESC para pausar o jogo
+Pressione F2 para ativar/desativar tela cheia
+Pressione F3 para mostrar/ocultar FPS
+Pressione F4 para ativar/desativar música

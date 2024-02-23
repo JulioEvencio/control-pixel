@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import controlpixel.Game;
 import controlpixel.strings.GameString;
 import controlpixel.strings.StringError;
+import controlpixel.strings.StringLevel;
 import controlpixel.strings.StringScreen;
 
 public class Translation {
@@ -62,7 +63,14 @@ public class Translation {
 			});
 
 			Translation.toTranslation("level", new GameString[] {
-				// Code
+					StringLevel.TUTORIAL_HELP_PIXEL,
+					StringLevel.TUTORIAL_USE_MOUSE_BLOCK,
+					StringLevel.TUTORIAL_EXIT_BUILD_MODE,
+					StringLevel.TUTORIAL_RESTART,
+					StringLevel.TUTORIAL_PAUSE,
+					StringLevel.TUTORIAL_FULL_SCREEN,
+					StringLevel.TUTORIAL_FPS,
+					StringLevel.TUTORIAL_MUSIC
 			});
 		} catch (Exception e) {
 			Game.exitWithError(StringError.ERROR_LOADING_FILES.getValue());

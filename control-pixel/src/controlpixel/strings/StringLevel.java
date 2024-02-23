@@ -4,10 +4,13 @@ public class StringLevel {
 
 	public static final GameString LEVEL_01 = new GameString("Level 01");
 
-	public static final GameString LINE_01 = new GameString("Ajude a Pixel, a garota, a chegar até o portal");
-	public static final GameString LINE_02 = new GameString("Use o mouse para adicionar objetos ao mapa");
-	public static final GameString LINE_03 = new GameString("Cada objeto tem uma função diferente");
-	public static final GameString LINE_04 = new GameString("O bloco é um bloco onde a Pixel pode andar");
-	public static final GameString LINE_05 = new GameString("Aperte barra de espaço para sair do modo de construção");
+	public static final GameString TUTORIAL_HELP_PIXEL = new GameString("Help Pixel get to the portal");
+	public static final GameString TUTORIAL_USE_MOUSE_BLOCK = new GameString("Use the mouse to build a block and complete the path");
+	public static final GameString TUTORIAL_EXIT_BUILD_MODE = new GameString("Press spacebar or right-click mouse to exit build mode");
+	public static final GameString TUTORIAL_RESTART = new GameString("Press R to restart the level");
+	public static final GameString TUTORIAL_PAUSE = new GameString("Press P or ESC to pause the game");
+	public static final GameString TUTORIAL_FULL_SCREEN = new GameString("Press F2 to enable/disable full screen");
+	public static final GameString TUTORIAL_FPS = new GameString("Press F3 to show/hide FPS");
+	public static final GameString TUTORIAL_MUSIC = new GameString("Press F4 to enable/disable music");
 
 }
