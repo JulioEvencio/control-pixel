@@ -6,3 +6,6 @@ Pressione P ou ESC para pausar o jogo
 Pressione F2 para ativar/desativar tela cheia
 Pressione F3 para mostrar/ocultar FPS
 Pressione F4 para ativar/desativar música
+Neste nível alguns blocos estão atrapalhando o caminho
+Use o scroll do mouse ou os números 1, 2 e 3 para alterar o item a ser construído
+Use o cristal verde para fazer Pixel pular

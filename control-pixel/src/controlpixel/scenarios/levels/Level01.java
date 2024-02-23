@@ -43,7 +43,7 @@ public class Level01 extends Scenario {
 
 	@Override
 	protected Scenario nextLevel() {
-		return new LevelTest(super.game);
+		return new Level02(super.game);
 	}
 
 	@Override

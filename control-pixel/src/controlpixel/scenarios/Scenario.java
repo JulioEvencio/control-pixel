@@ -170,6 +170,9 @@ public abstract class Scenario {
 					case 'P':
 						this.portal = new Portal(50 * j, 50 * i);
 						break;
+					case 'B':
+						this.tiles.add(new Block(50 * j, 50 * i));
+						break;
 					case 'J':
 						this.mouseMotionX = 50 * j + 5;
 						this.mouseMotionY = 50 * i + 5;

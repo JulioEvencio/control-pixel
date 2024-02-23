@@ -70,7 +70,10 @@ public class Translation {
 					StringLevel.TUTORIAL_PAUSE,
 					StringLevel.TUTORIAL_FULL_SCREEN,
 					StringLevel.TUTORIAL_FPS,
-					StringLevel.TUTORIAL_MUSIC
+					StringLevel.TUTORIAL_MUSIC,
+					StringLevel.TUTORIAL_BLOCK_PATH,
+					StringLevel.TUTORIAL_SCROLL,
+					StringLevel.TUTORIAL_CRYSTAL_GREEN
 			});
 		} catch (Exception e) {
 			Game.exitWithError(StringError.ERROR_LOADING_FILES.getValue());
