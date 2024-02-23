@@ -45,6 +45,10 @@ public class Player {
 		this.isDead = false;
 	}
 
+	public Rect getRect() {
+		return this.rect;
+	}
+
 	public boolean isDead() {
 		return this.isDead;
 	}

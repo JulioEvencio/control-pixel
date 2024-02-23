@@ -319,7 +319,7 @@ public abstract class Scenario {
 			this.portal.tick();
 			this.player.tick();
 
-			if (this.player.isDead()) {
+			if (this.player.isDead() || !this.canRender(this.player.getRect())) {
 				this.scenarioRestart();
 			}
 		}
