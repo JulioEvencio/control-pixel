@@ -356,8 +356,8 @@ public abstract class Scenario {
 				if (entity.getRect().wasClicked(this.mouseMotionX, this.mouseMotionY)) {
 					showMouseMotionRect = true;
 
-					this.mouseMotionRect.setX(entity.getRect().getX());
-					this.mouseMotionRect.setY(entity.getRect().getY());
+					this.mouseMotionRect.setX(entity.getRect().getX() - Camera.x);
+					this.mouseMotionRect.setY(entity.getRect().getY() - Camera.y);
 				}
 			}
 		}
@@ -380,7 +380,7 @@ public abstract class Scenario {
 
 		this.player.render(render);
 
-		if (showMouseMotionRect) {
+		if (showMouseMotionRect && this.buildMode) {
 			render.setColor(Color.WHITE);
 			render.drawRect(this.mouseMotionRect.getX(), this.mouseMotionRect.getY(), this.mouseMotionRect.getWidth(), this.mouseMotionRect.getHeight());
 		}
@@ -458,6 +458,9 @@ public abstract class Scenario {
 				this.mouseClickX *= (double) this.game.getGameWidth() / (double) this.game.getRendererWidth();
 				this.mouseClickY *= (double) this.game.getGameHeight() / (double) this.game.getRendererHeight();
 			}
+
+			this.mouseClickX += Camera.x;
+			this.mouseClickY += Camera.y;
 		}
 
 		if (e.getButton() == MouseEvent.BUTTON3) {
@@ -476,6 +479,9 @@ public abstract class Scenario {
 			this.mouseMotionX *= (double) this.game.getGameWidth() / (double) this.game.getRendererWidth();
 			this.mouseMotionY *= (double) this.game.getGameHeight() / (double) this.game.getRendererHeight();
 		}
+
+		this.mouseMotionX += Camera.x;
+		this.mouseMotionY += Camera.y;
 	}
 
 	public void mouseWheelMoved(MouseWheelEvent e) {

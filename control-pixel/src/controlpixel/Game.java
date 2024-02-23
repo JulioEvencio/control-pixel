@@ -31,6 +31,7 @@ import controlpixel.screen.Screen;
 import controlpixel.screen.SelectLanguage;
 import controlpixel.strings.StringError;
 import controlpixel.strings.StringGame;
+import controlpixel.util.Camera;
 import controlpixel.util.GameStatus;
 import controlpixel.util.Util;
 
@@ -183,6 +184,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	}
 
 	public void initializeScenario(Scenario scenario) {
+		Camera.x = 0;
+		Camera.y = 0;
+
 		this.scenarioBase = scenario;
 		this.canRestartScenario = true;
 	}
