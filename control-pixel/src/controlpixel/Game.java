@@ -391,7 +391,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if (this.gameStatus != GameStatus.RUN) {
+		if (this.gameStatus == GameStatus.RUN) {
+			this.scenario.mousePressed(e);
+		} else {
 			for (Screen screen : this.screens) {
 				if (screen.getGameStatus() == this.gameStatus) {
 					screen.mousePressed(e);
@@ -403,9 +405,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (this.gameStatus == GameStatus.RUN) {
-			this.scenario.mouseReleased(e);
-		} else {
+		if (this.gameStatus != GameStatus.RUN) {
 			for (Screen screen : this.screens) {
 				if (screen.getGameStatus() == this.gameStatus) {
 					screen.mouseReleased(e);

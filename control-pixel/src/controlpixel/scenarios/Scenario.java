@@ -444,7 +444,7 @@ public abstract class Scenario {
 		}
 	}
 
-	public void mouseReleased(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			this.hasClick = true;
 
