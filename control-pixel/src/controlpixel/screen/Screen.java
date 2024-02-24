@@ -9,6 +9,7 @@ import java.util.List;
 
 import controlpixel.Game;
 import controlpixel.gui.Button;
+import controlpixel.gui.ButtonSmall;
 import controlpixel.gui.Text;
 import controlpixel.util.GameStatus;
 import controlpixel.util.Spritesheet;
@@ -24,6 +25,7 @@ public abstract class Screen {
 
 	protected final List<Text> texts;
 	protected final List<Button> buttons;
+	protected final List<ButtonSmall> buttonSmalls;
 
 	private boolean mousePressed;
 	private boolean mouseReleased;
@@ -42,6 +44,7 @@ public abstract class Screen {
 
 		this.texts = new ArrayList<>();
 		this.buttons = new ArrayList<>();
+		this.buttonSmalls = new ArrayList<>();
 
 		this.mousePressed = false;
 		this.mouseReleased = false;
@@ -62,11 +65,25 @@ public abstract class Screen {
 				}
 			}
 
+			for (ButtonSmall button : this.buttonSmalls) {
+				if (button.wasClicked(this.mouseX, this.mouseY)) {
+					button.setButtonPressed();
+				}
+			}
+
 			this.mousePressed = false;
 		}
 
 		if (this.mouseReleased) {
 			for (Button button : this.buttons) {
+				if (button.wasClicked(this.mouseX, this.mouseY)) {
+					button.onClick();
+				}
+
+				button.setButtonReleased();
+			}
+
+			for (ButtonSmall button : this.buttonSmalls) {
 				if (button.wasClicked(this.mouseX, this.mouseY)) {
 					button.onClick();
 				}
@@ -93,6 +110,10 @@ public abstract class Screen {
 		}
 
 		for (Button button : this.buttons) {
+			button.render(render);
+		}
+
+		for (ButtonSmall button : this.buttonSmalls) {
 			button.render(render);
 		}
 	}

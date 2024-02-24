@@ -3,7 +3,7 @@ package controlpixel.screen;
 import java.awt.Color;
 
 import controlpixel.Game;
-import controlpixel.gui.Button;
+import controlpixel.gui.ButtonSmall;
 import controlpixel.gui.Text;
 import controlpixel.strings.StringGame;
 import controlpixel.strings.StringScreen;
@@ -17,8 +17,8 @@ public class Exit extends Screen {
 		
 		super.texts.add(new Text(StringScreen.EXIT_GAME.getValue(), (game.getGameWidth() - Util.getWidthExitGame()) / 2, 180, Color.WHITE));
 
-		super.buttons.add(new Button(game, StringScreen.YES.getValue(), game.getGameWidth() / 2 - 25 - Button.getWidthPressed(), 220, () -> Game.exitGame()));
-		super.buttons.add(new Button(game, StringScreen.NO.getValue(), game.getGameWidth() / 2 + 25, 220, () -> game.updateGameStatus(game.getLastGameStatus())));
+		super.buttonSmalls.add(new ButtonSmall(game, StringScreen.YES.getValue(), game.getGameWidth() / 2 - 25 - ButtonSmall.getWidthPressed(), 220, () -> Game.exitGame()));
+		super.buttonSmalls.add(new ButtonSmall(game, StringScreen.NO.getValue(), game.getGameWidth() / 2 + 25, 220, () -> game.updateGameStatus(game.getLastGameStatus())));
 	}
 
 	@Override

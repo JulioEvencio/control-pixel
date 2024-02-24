@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import controlpixel.Game;
 import controlpixel.gui.Button;
+import controlpixel.gui.ButtonSmall;
 import controlpixel.gui.Text;
 import controlpixel.strings.StringScreen;
 import controlpixel.util.GameStatus;
@@ -28,7 +29,7 @@ public class Credits extends Screen {
 		super.texts.add(new Text(StringScreen.SPRITES_CREDITS_PORTAL.getValue(), 50, 230, Color.WHITE));
 		super.texts.add(new Text(StringScreen.SPRITES_CREDITS_LINK_PORTAL.getValue(), 50, 250, Color.WHITE));
 
-		super.buttons.add(new Button(game, StringScreen.BACK.getValue(), 50, game.getGameHeight() - Button.getHeightpressed() - 50, () -> game.updateGameStatus(GameStatus.MAIN_MENU)));
+		super.buttonSmalls.add(new ButtonSmall(game, StringScreen.BACK.getValue(), 50, game.getGameHeight() - Button.getHeightpressed() - 50, () -> game.updateGameStatus(GameStatus.MAIN_MENU)));
 	}
 
 	@Override
