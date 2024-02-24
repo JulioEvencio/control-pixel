@@ -34,6 +34,7 @@ public class Level03 extends Scenario {
 
 		super.texts.add(new TextRender(StringLevel.TUTORIAL_PORTAL_SIDE.getValue(), 25, 50, CustomColors.WHITE, super.game.getRender()));
 		super.texts.add(new TextRender(StringLevel.TUTORIAL_CRYSTAL_BLUE.getValue(), 25, 75, CustomColors.WHITE, super.game.getRender()));
+		super.texts.add(new TextRender(StringLevel.TUTORIAL_CRYSTAL_ENABLE.getValue(), 25, 100, CustomColors.WHITE, super.game.getRender()));
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package controlpixel.scenarios.entities.player;
 import java.awt.Graphics;
 
 import controlpixel.scenarios.Scenario;
+import controlpixel.scenarios.entities.CrystalReverse;
 import controlpixel.scenarios.entities.Entity;
 import controlpixel.util.Camera;
 import controlpixel.util.Rect;
@@ -165,8 +166,12 @@ public class Player {
 		}
 
 		for (Entity entity : this.scenario.getEntitiesReverse()) {
-			if (this.rect.isColliding(entity.getRect())) {
+			CrystalReverse e = (CrystalReverse) entity;
+
+			if (e.isEnabled() && this.rect.isColliding(entity.getRect())) {
 				this.reverseDirection();
+
+				e.setDisabled();
 
 				break;
 			}

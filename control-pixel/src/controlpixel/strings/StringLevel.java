@@ -30,6 +30,7 @@ public class StringLevel {
 
 	public static final GameString TUTORIAL_PORTAL_SIDE = new GameString("The portal is on the other side");
 	public static final GameString TUTORIAL_CRYSTAL_BLUE = new GameString("Use the blue crystal to reverse the direction of the Pixel");
+	public static final GameString TUTORIAL_CRYSTAL_ENABLE = new GameString("Cada cristal azul solo se puede activar una vez");
 
 	public static final GameString TUTORIAL_LEVEL_BIG = new GameString("This level is very big");
 	public static final GameString TUTORIAL_MOVE_CAMERA = new GameString("Use the WASD keys or arrow keys to move the camera");

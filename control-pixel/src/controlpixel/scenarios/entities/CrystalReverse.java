@@ -10,12 +10,24 @@ public class CrystalReverse extends Entity {
 
 	public static final BufferedImage sprite;
 
+	private boolean enabled;
+
 	static {
 		sprite = Spritesheet.getSpriteMap(80, 128, 16, 16);
 	}
 
 	public CrystalReverse(int x, int y) {
 		super(x + 20, y + 20, 10, 10);
+
+		this.enabled = true;
+	}
+
+	public boolean isEnabled() {
+		return this.enabled;
+	}
+
+	public void setDisabled() {
+		this.enabled = false;
 	}
 
 	@Override
