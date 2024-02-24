@@ -52,7 +52,7 @@ public abstract class Screen {
 		this.mouseX = 0;
 		this.mouseY = 0;
 
-		this.texts.add(new Text(String.format("Version: %s", this.game.getVERSION()), 50, 50, Color.WHITE));
+		this.texts.add(new Text(String.format("v %s", this.game.getVERSION()), 50, 50, Color.WHITE));
 	}
 
 	public abstract GameStatus getGameStatus();
