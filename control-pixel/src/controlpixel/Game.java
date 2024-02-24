@@ -33,6 +33,7 @@ import controlpixel.screen.SelectLevel01;
 import controlpixel.screen.SelectLevel02;
 import controlpixel.strings.StringError;
 import controlpixel.strings.StringGame;
+import controlpixel.util.Audio;
 import controlpixel.util.Camera;
 import controlpixel.util.GameStatus;
 import controlpixel.util.Util;
@@ -74,6 +75,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private Scenario scenarioBase;
 
 	private boolean canRestartScenario;
+
+	private boolean enableAudio;
+	private Audio audioNow;
+
+	private final Audio audioMenu;
+	private final Audio audioGame;
 
 	public Game() {
 		this.addKeyListener(this);
@@ -126,6 +133,13 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		this.canRestartScenario = false;
 
+		this.enableAudio = true;
+
+		this.audioMenu = new Audio("/audios/menu.wav");
+		this.audioGame = new Audio("/audios/game.wav");
+
+		this.updateAudio(this.audioMenu);
+
 		this.updateGameStatus(GameStatus.SELECT_LANGUAGE);
 		this.initializeScreen();
 	}
@@ -173,6 +187,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public void updateGameStatus(GameStatus gameStatus) {
 		this.lastGameStatus = this.gameStatus;
 		this.gameStatus = gameStatus;
+
+		if (this.gameStatus == GameStatus.RUN || this.gameStatus == GameStatus.PAUSE || (this.lastGameStatus == GameStatus.PAUSE && this.gameStatus == GameStatus.EXIT)) {
+			this.updateAudio(this.audioGame);
+		} else {
+			this.updateAudio(this.audioMenu);
+		}
 	}
 
 	public void initializeScreen() {
@@ -193,6 +213,16 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		this.scenarioBase = scenario;
 		this.canRestartScenario = true;
+	}
+
+	private void updateAudio(Audio audio) {
+		if (this.audioNow != audio) {
+			if (this.audioNow != null) {
+				this.audioNow.stop();
+			}
+
+			this.audioNow = audio;
+		}
 	}
 
 	private void toggleFullscreen() {
@@ -243,6 +273,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	}
 
 	private void tick() {
+		if (this.enableAudio) {
+			this.audioNow.play();
+		} else {
+			this.audioNow.stop();
+		}
+
 		this.toggleFullscreen();
 
 		if (this.gameStatus == GameStatus.RUN) {
@@ -257,6 +293,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		}
 
 		if (this.canRestartScenario) {
+			Camera.x = 0;
+			Camera.y = 0;
+
 			this.scenario = this.scenarioBase;
 			this.canRestartScenario = false;
 		}
@@ -372,6 +411,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		if (e.getKeyCode() == KeyEvent.VK_F3) {
 			this.showFPS = !this.showFPS;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_F4) {
+			this.enableAudio = !this.enableAudio;
 		}
 	}
 
