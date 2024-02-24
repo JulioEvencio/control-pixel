@@ -365,9 +365,6 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		int frames = 0;
 
 		while (true) {
-			this.render();
-			frames++;
-
 			long now = System.nanoTime();
 
 			delta += (now - lastTime) / ns;
@@ -375,9 +372,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 			if (delta >= 1) {
 				this.tick();
-				// this.render();
+				this.render();
 
-				// frames++;
+				frames++;
 				delta--;
 			}
 
