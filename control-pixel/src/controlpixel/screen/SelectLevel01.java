@@ -23,7 +23,9 @@ public class SelectLevel01 extends Screen {
 		this.addLevel01And02And03(game, centerWidth);
 		this.addLevel04And05And06(game, centerWidth);
 
-		super.buttons.add(new Button(game, StringScreen.BACK.getValue(), 50, game.getGameHeight() - Button.getHeightpressed() - 50, () -> game.updateGameStatus(GameStatus.MAIN_MENU)));
+		super.buttonSmalls.add(new ButtonSmall(game, StringScreen.MENU.getValue(), centerWidth, game.getGameHeight() - ButtonSmall.getHeightpressed() - 50, () -> game.updateGameStatus(GameStatus.MAIN_MENU)));
+
+		super.buttons.add(new Button(game, StringScreen.NEXT.getValue(), game.getGameWidth() - Button.getWidthPressed() - 50, game.getGameHeight() - Button.getHeightpressed() - 50, () -> game.updateGameStatus(GameStatus.SELECT_LEVEL_02)));
 	}
 
 	private void addLevel01And02And03(Game game, int centerWidth) {

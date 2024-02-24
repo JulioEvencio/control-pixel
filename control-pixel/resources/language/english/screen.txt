@@ -12,6 +12,7 @@ Sprites - PLAYER: Immunitys
 itch.io: https://immunitys.itch.io
 Sprites - PORTAL: LetargicDev
 Open Game Art: https://opengameart.org/content/portals
+Next
 Back
 Do you want to leave the game?
 Yes

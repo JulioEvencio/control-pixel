@@ -27,6 +27,7 @@ public class StringScreen {
 	public static final GameString SPRITES_CREDITS_PORTAL = new GameString("Sprites - PORTAL: LetargicDev");
 	public static final GameString SPRITES_CREDITS_LINK_PORTAL = new GameString("Open Game Art: https://opengameart.org/content/portals");
 
+	public static final GameString NEXT = new GameString("Next");
 	public static final GameString BACK = new GameString("Back");
 
 	public static final GameString EXIT_GAME = new GameString("Do you want to leave the game?");
