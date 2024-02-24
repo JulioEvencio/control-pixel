@@ -27,6 +27,14 @@ public class StringScreen {
 	public static final GameString SPRITES_CREDITS_PORTAL = new GameString("Sprites - PORTAL: LetargicDev");
 	public static final GameString SPRITES_CREDITS_LINK_PORTAL = new GameString("Open Game Art: https://opengameart.org/content/portals");
 
+	public static final GameString AUDIO_MENU_CREDITS = new GameString("Audio - MENU: cabled_mess");
+	public static final GameString AUDIO_MENU_CREDITS_LINK = new GameString("freesound.org: https://freesound.org/people/cabled_mess");
+
+	public static final GameString AUDIO_GAME_CREDITS = new GameString("Audio - GAME: josefpres");
+	public static final GameString AUDIO_GAME_CREDITS_LINK = new GameString("freesound.org: https://freesound.org/people/josefpres");
+
+	public static final GameString SOURCE_CODE_LINK = new GameString("Source Code: https://github.com/JulioEvencio/control-pixel");
+
 	public static final GameString NEXT = new GameString("Next");
 	public static final GameString BACK = new GameString("Back");
 

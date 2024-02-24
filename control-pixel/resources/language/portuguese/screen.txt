@@ -12,6 +12,11 @@ Sprites - PLAYER: Immunitys
 itch.io: https://immunitys.itch.io
 Sprites - PORTAL: LetargicDev
 Open Game Art: https://opengameart.org/content/portals
+Áudio - MENU: cabled_mess
+freesound.org: https://freesound.org/people/cabled_mess
+Áudio - GAME: josefpres
+freesound.org: https://freesound.org/people/josefpres
+Código fonte: https://github.com/JulioEvencio/control-pixel
 Próximo
 Voltar
 Você quer sair do jogo?
