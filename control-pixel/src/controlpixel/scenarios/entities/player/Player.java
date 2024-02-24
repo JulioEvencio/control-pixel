@@ -36,7 +36,7 @@ public class Player {
 		this.speedY = 0.0;
 
 		this.isJump = false;
-		this.jumpHeight = 75;
+		this.jumpHeight = 100;
 		this.jumpFrames = 0;
 
 		this.sprite = new PlayerSprite(0, 0, 50, 50);
