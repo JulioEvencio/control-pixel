@@ -15,12 +15,12 @@ public class CrystalJump extends Entity {
 	}
 
 	public CrystalJump(int x, int y) {
-		super(x + 20, y + 20, 10, 10);
+		super(x + 19, y + 17, 15, 15);
 	}
 
 	@Override
 	public void render(Graphics render) {
-		render.drawImage(CrystalJump.sprite, super.rect.getX() - Camera.x - 6, super.rect.getY() - Camera.y - 8, 25, 25, null);
+		render.drawImage(CrystalJump.sprite, super.rect.getX() - Camera.x - 5, super.rect.getY() - Camera.y - 5, 25, 25, null);
 	}
 
 }
