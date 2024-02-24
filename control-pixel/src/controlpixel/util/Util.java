@@ -1,8 +1,16 @@
 package controlpixel.util;
 
 import java.awt.Font;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 
 public class Util {
+
+	private static Save save;
 
 	public static Font getFontTitle() {
 		return new Font("Arial", Font.BOLD, 36);
@@ -30,6 +38,27 @@ public class Util {
 		} else {
 			return 288;
 		}
+	}
+
+	public static void saveData() {
+		try (ObjectOutput out = new ObjectOutputStream(new FileOutputStream("data/save.obj"))) {
+			out.writeObject(Util.save);
+		} catch (Exception e) {
+			// Code
+		}
+	}
+
+	public static void loadData() {
+		try (ObjectInput in = new ObjectInputStream(new FileInputStream("data/save.obj"))) {
+			Util.save = (Save) in.readObject();
+		} catch (Exception e) {
+			Util.save = new Save();
+			Util.saveData();
+		}
+	}
+
+	public static Save getSave() {
+		return Util.save;
 	}
 
 }

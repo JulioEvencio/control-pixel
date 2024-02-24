@@ -5,6 +5,7 @@ import controlpixel.gui.TextRender;
 import controlpixel.scenarios.Scenario;
 import controlpixel.strings.StringLevel;
 import controlpixel.util.CustomColors;
+import controlpixel.util.Util;
 
 public class Level02 extends Scenario {
 
@@ -38,6 +39,8 @@ public class Level02 extends Scenario {
 
 	@Override
 	protected Scenario nextLevel() {
+		Util.getSave().setLevel03(true);
+
 		return new Level03(super.game);
 	}
 

@@ -29,6 +29,7 @@ import controlpixel.util.Camera;
 import controlpixel.util.CustomColors;
 import controlpixel.util.GameStatus;
 import controlpixel.util.Rect;
+import controlpixel.util.Util;
 
 public abstract class Scenario {
 
@@ -314,7 +315,11 @@ public abstract class Scenario {
 				this.moveCamera();
 			}
 		} else if (this.levelFinished) {
-			this.game.initializeScenario(this.nextLevel());
+			Scenario scenario = this.nextLevel();
+
+			Util.saveData();
+
+			this.game.initializeScenario(scenario);
 		} else {
 			this.portal.tick();
 			this.player.tick();

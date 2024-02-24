@@ -11,6 +11,7 @@ import controlpixel.Game;
 import controlpixel.gui.Button;
 import controlpixel.gui.ButtonSmall;
 import controlpixel.gui.Text;
+import controlpixel.strings.StringLevel;
 import controlpixel.util.GameStatus;
 import controlpixel.util.Spritesheet;
 import controlpixel.util.Util;
@@ -57,7 +58,37 @@ public abstract class Screen {
 
 	public abstract GameStatus getGameStatus();
 
+	private void updateButtonEnable() {
+		for (ButtonSmall button : this.buttonSmalls) {
+			if (button.getText().equals(StringLevel.LEVEL_02.getValue())) {
+				button.setEnabled(Util.getSave().isLevel02());
+			} else if (button.getText().equals(StringLevel.LEVEL_03.getValue())) {
+				button.setEnabled(Util.getSave().isLevel03());
+			} else if (button.getText().equals(StringLevel.LEVEL_04.getValue())) {
+				button.setEnabled(Util.getSave().isLevel04());
+			} else if (button.getText().equals(StringLevel.LEVEL_05.getValue())) {
+				button.setEnabled(Util.getSave().isLevel05());
+			} else if (button.getText().equals(StringLevel.LEVEL_06.getValue())) {
+				button.setEnabled(Util.getSave().isLevel06());
+			} else if (button.getText().equals(StringLevel.LEVEL_07.getValue())) {
+				button.setEnabled(Util.getSave().isLevel07());
+			} else if (button.getText().equals(StringLevel.LEVEL_08.getValue())) {
+				button.setEnabled(Util.getSave().isLevel08());
+			} else if (button.getText().equals(StringLevel.LEVEL_09.getValue())) {
+				button.setEnabled(Util.getSave().isLevel09());
+			} else if (button.getText().equals(StringLevel.LEVEL_10.getValue())) {
+				button.setEnabled(Util.getSave().isLevel10());
+			} else if (button.getText().equals(StringLevel.LEVEL_11.getValue())) {
+				button.setEnabled(Util.getSave().isLevel11());
+			} else if (button.getText().equals(StringLevel.LEVEL_12.getValue())) {
+				button.setEnabled(Util.getSave().isLevel12());
+			}
+		}
+	}
+
 	public void tick() {
+		this.updateButtonEnable();
+
 		if (this.mousePressed) {
 			for (Button button : this.buttons) {
 				if (button.wasClicked(this.mouseX, this.mouseY)) {

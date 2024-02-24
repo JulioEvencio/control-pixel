@@ -312,6 +312,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void run() {
+		Util.loadData();
+
 		this.requestFocus();
 
 		long lastTime = System.nanoTime();
