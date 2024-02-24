@@ -37,4 +37,6 @@ public class StringScreen {
 	public static final GameString CONTINUE = new GameString("Continue");
 	public static final GameString MENU = new GameString("Menu");
 
+	public static final GameString BLOCKED = new GameString("Blocked");
+
 }

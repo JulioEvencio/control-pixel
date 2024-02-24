@@ -19,3 +19,4 @@ Sim
 Não
 Continuar
 Menu
+Bloqueado

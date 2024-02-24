@@ -60,7 +60,8 @@ public class Translation {
 				StringScreen.YES,
 				StringScreen.NO,
 				StringScreen.CONTINUE,
-				StringScreen.MENU
+				StringScreen.MENU,
+				StringScreen.BLOCKED
 			});
 
 			Translation.toTranslation("level", new GameString[] {
