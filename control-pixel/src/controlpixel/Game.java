@@ -88,7 +88,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		this.addMouseMotionListener(this);
 		this.addMouseWheelListener(this);
 
-		this.VERSION = "0.1";
+		this.VERSION = "1.0";
 
 		this.WIDTH = 800;
 		this.HEIGHT = 450;
