@@ -14,3 +14,7 @@ Usa el cristal azul para invertir la dirección del Pixel
 Cada cristal azul solo se puede activar una vez
 Este nivel es muy grande
 Utilice las teclas WASD o las teclas de flecha para mover la cámara
+Victoria!
+Ganaste el juego!!
+Gracias por jugar!!!
+Pulsa P o ESC...

@@ -8,7 +8,7 @@ import controlpixel.scenarios.levels.Level08;
 import controlpixel.scenarios.levels.Level09;
 import controlpixel.scenarios.levels.Level10;
 import controlpixel.scenarios.levels.Level11;
-import controlpixel.scenarios.levels.LevelTest;
+import controlpixel.scenarios.levels.Level12;
 import controlpixel.strings.StringGame;
 import controlpixel.strings.StringLevel;
 import controlpixel.strings.StringScreen;
@@ -58,7 +58,7 @@ public class SelectLevel02 extends Screen {
 		}));
 
 		super.buttonSmalls.add(new ButtonSmall(game, StringLevel.LEVEL_12.getValue(), centerWidth + 100 + ButtonSmall.getWidthPressed(), 220, () -> {
-			game.initializeScenario(new LevelTest(game));
+			game.initializeScenario(new Level12(game));
 			game.updateGameStatus(GameStatus.RUN);
 		}));
 	}

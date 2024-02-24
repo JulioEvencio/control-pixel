@@ -48,7 +48,7 @@ public class Level11 extends Scenario {
 	protected Scenario nextLevel() {
 		Util.getSave().setLevel12(true);
 
-		return new LevelTest(super.game);
+		return new Level12(super.game);
 	}
 
 	@Override

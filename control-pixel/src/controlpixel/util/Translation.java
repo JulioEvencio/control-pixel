@@ -85,7 +85,11 @@ public class Translation {
 					StringLevel.TUTORIAL_CRYSTAL_BLUE,
 					StringLevel.TUTORIAL_CRYSTAL_ENABLE,
 					StringLevel.TUTORIAL_LEVEL_BIG,
-					StringLevel.TUTORIAL_MOVE_CAMERA
+					StringLevel.TUTORIAL_MOVE_CAMERA,
+					StringLevel.LEVEL_VICTORY,
+					StringLevel.LEVEL_BEAT_GAME,
+					StringLevel.LEVEL_THANKS_FOR_PLAYING,
+					StringLevel.LEVEL_PRESS_P_ESC
 			});
 		} catch (Exception e) {
 			Game.exitWithError(StringError.ERROR_LOADING_FILES.getValue());

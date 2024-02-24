@@ -14,3 +14,7 @@ Use the blue crystal to reverse the direction of the Pixel
 Each blue crystal can only be activated once
 This level is very big
 Use the WASD keys or arrow keys to move the camera
+Victory!
+You beat the game!!
+Thanks for playing!!!
+Press P or ESC...

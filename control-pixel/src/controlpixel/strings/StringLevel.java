@@ -13,7 +13,7 @@ public class StringLevel {
 	public static final GameString LEVEL_09 = new GameString("Level 09");
 	public static final GameString LEVEL_10 = new GameString("Level 10");
 	public static final GameString LEVEL_11 = new GameString("Level 11");
-	public static final GameString LEVEL_12 = new GameString("Level 12");
+	public static final GameString LEVEL_12 = new GameString("Control Pixel");
 
 	public static final GameString TUTORIAL_HELP_PIXEL = new GameString("Help Pixel get to the portal");
 	public static final GameString TUTORIAL_USE_MOUSE_BLOCK = new GameString("Use the mouse to build a block and complete the path");
@@ -34,5 +34,10 @@ public class StringLevel {
 
 	public static final GameString TUTORIAL_LEVEL_BIG = new GameString("This level is very big");
 	public static final GameString TUTORIAL_MOVE_CAMERA = new GameString("Use the WASD keys or arrow keys to move the camera");
+
+	public static final GameString LEVEL_VICTORY = new GameString("Victory!");
+	public static final GameString LEVEL_BEAT_GAME = new GameString("You beat the game!!");
+	public static final GameString LEVEL_THANKS_FOR_PLAYING = new GameString("Thanks for playing!!!");
+	public static final GameString LEVEL_PRESS_P_ESC = new GameString("Press P or ESC...");
 
 }
