@@ -40,7 +40,7 @@ public class Translation {
 			});
 
 			Translation.toTranslation("screen", new GameString[] {
-				StringScreen.NEW_GAME,
+				StringScreen.PLAY,
 				StringScreen.CREDITS,
 				StringScreen.EXIT,
 				StringScreen.TEXT_FULL_SCREEN,

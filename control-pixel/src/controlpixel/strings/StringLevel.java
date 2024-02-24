@@ -6,6 +6,14 @@ public class StringLevel {
 	public static final GameString LEVEL_02 = new GameString("Level 02");
 	public static final GameString LEVEL_03 = new GameString("Level 03");
 	public static final GameString LEVEL_04 = new GameString("Level 04");
+	public static final GameString LEVEL_05 = new GameString("Level 05");
+	public static final GameString LEVEL_06 = new GameString("Level 06");
+	public static final GameString LEVEL_07 = new GameString("Level 07");
+	public static final GameString LEVEL_08 = new GameString("Level 08");
+	public static final GameString LEVEL_09 = new GameString("Level 09");
+	public static final GameString LEVEL_10 = new GameString("Level 10");
+	public static final GameString LEVEL_11 = new GameString("Level 11");
+	public static final GameString LEVEL_12 = new GameString("Level 12");
 
 	public static final GameString TUTORIAL_HELP_PIXEL = new GameString("Help Pixel get to the portal");
 	public static final GameString TUTORIAL_USE_MOUSE_BLOCK = new GameString("Use the mouse to build a block and complete the path");

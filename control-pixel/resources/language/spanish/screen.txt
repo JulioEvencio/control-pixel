@@ -1,4 +1,4 @@
-Nuevo Juego
+Jugar
 Créditos
 Salir
 Presione F2 para habilitar/deshabilitar la pantalla completa

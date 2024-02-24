@@ -29,6 +29,7 @@ import controlpixel.screen.MainMenu;
 import controlpixel.screen.Pause;
 import controlpixel.screen.Screen;
 import controlpixel.screen.SelectLanguage;
+import controlpixel.screen.SelectLevel01;
 import controlpixel.strings.StringError;
 import controlpixel.strings.StringGame;
 import controlpixel.util.Camera;
@@ -178,6 +179,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 		this.screens.add(new MainMenu(this));
 		this.screens.add(new Pause(this));
+		this.screens.add(new SelectLevel01(this));
 		this.screens.add(new Credits(this));
 		this.screens.add(new Exit(this));
 		this.screens.add(new SelectLanguage(this));
