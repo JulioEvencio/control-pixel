@@ -398,7 +398,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public void keyReleased(KeyEvent e) {
 		if (this.gameStatus == GameStatus.RUN) {
 			this.scenario.keyReleased(e);
-		} else if (this.gameStatus == GameStatus.PAUSE && e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+		} else if (this.gameStatus == GameStatus.PAUSE && (e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE)) {
 			this.updateGameStatus(GameStatus.RUN);
 		}
 
